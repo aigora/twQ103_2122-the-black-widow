@@ -4,7 +4,7 @@
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Estrella Pola (EstrellaPola), María Mezquida (mmezquidaf), Beatriz Pérez (BeaLightwood)
 
 ## Objetivos del trabajo
 
