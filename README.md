@@ -1,11 +1,14 @@
-# [Título del trabajo]
+# THE BLACK WIDOW
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+El juego consiste en un scape room donde una araña es la protagonista. El jugador comienza con una puntuación inicial de cero, y al contestar de manera correcta a una pregunta, se obtienen puntos que se representan con asteriscos, si la respuesta es incorrecta se restan. 
+Al final del juego aparecerá un ranking con los ganadores. 
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Estrella Pola (EstrellaPola), María Mezquida (mmezquidaf), Beatriz Pérez (BeaLightwood)
 
 ## Objetivos del trabajo
+- El programa constará de un banco de preguntas, de manera que el propio código escogerá de manera aleatoria entre ellas.
+- Habrá la opción de juego individual o multijugador hasta tres personas.
+- Existirá un contador de puntos para visualizar la trayectoria del juego, y un ranking final para ver el ganador. 
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
