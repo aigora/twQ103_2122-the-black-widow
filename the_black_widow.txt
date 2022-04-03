@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    int opcion;
+
+
+    printf("1. Instrucciones del juego\n");
+    printf("2. Iniciar  sesion\n");
+    printf("3. Ranking de puntuaciones\n");
+    printf("4. Iniciar juego\n");
+
+    printf("Escriba el numero de lo que quiere hacer: \n");
+    scanf("%d", &opcion);
+    
+    if (opcion==1) { //Como limpiar pantalla
+        printf("1-Pulse iniciar sesion y a continuacion seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n");
+        printf("Regrese a la pantalla de inicio (pulse la letra w)\n");
+        printf("2-Iniciar juego")
+    }
+    
+    if (opcion==2) {
+        
+    }
+    
+    if (opcion==3) {
+        
+    }
+    
+    if (opcion==4) {
+        
+    }
+
+
+
+return 0;
+}
