@@ -2,6 +2,40 @@
 
 int main() {
     int opcion;
+    
+	printf ("\n");
+	printf ("		   		.			 .\n");
+	printf ("				-			 -\n");
+	printf ("		  .    --			 --	    .\n");
+	printf ("		  -   --			  --    -\n");
+	printf ("		 --  --			 	   --   --\n");
+	printf ("		--    --			  --	 --\n");
+	printf ("	   --      --			 --		  --\n");
+	printf ("		--		--	 .   .  --		 --\n");
+	printf ("		 --       -- -- -- --  	    --\n");
+	printf ("	      --     --         --     --\n");
+	printf ("	       --   --           --   --\n");
+	printf ("	        -- --             -- --\n");
+	printf ("	            --           --\n");
+	printf ("	             --         --\n");
+	printf ("	 -- -- -- -- --         -- -- -- -- --\n");
+	printf ("	--    -- -- --           -- -- --    --\n");
+	printf ("  --    --    --             --    --    --\n");
+	printf (" --    --    --               --    --    --\n");
+	printf ("--    --    --                 --    --    --\n");
+	printf ("--   --    --                   --    --    --\n");
+	printf ("--  --      --                  --     --    --\n");
+	printf ("     --      --                --       --\n");
+	printf ("      --      --              --       --\n");
+	printf ("       --      --            --       --\n");
+	printf ("        --      --          --       --\n");
+	printf ("         --      --        --       --\n");
+	printf ("          --      -- -- -- -       --\n");
+	printf ("           --                     --\n");
+	printf ("            --                   --\n");
+	printf ("             --                 --\n");
+		
+	printf ("\n");
 	
 	do {
 	
