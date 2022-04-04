@@ -2,35 +2,49 @@
 
 int main() {
     int opcion;
+	
+	do {
+	
+		printf ("MENU DE OPCIONES\n");
+		printf("Escriba el numero que representa la acción que desea realizar:\n");
+    		printf("1. Instrucciones del juego\n");
+    		printf("2. Iniciar  sesion\n");
+    		printf("3. Ranking de puntuaciones\n");
+   		printf("4. Iniciar juego\n");
+    		printf("5. Salir\n");
 
-
-    printf("1. Instrucciones del juego\n");
-    printf("2. Iniciar  sesion\n");
-    printf("3. Ranking de puntuaciones\n");
-    printf("4. Iniciar juego\n");
-
-    printf("Escriba el numero de lo que quiere hacer: \n");
-    scanf("%d", &opcion);
+		scanf("%d", &opcion);
+		
+		printf ("\n");
     
-    if (opcion==1) { //Como limpiar pantalla
-        printf("1-Pulse iniciar sesion y a continuacion seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n");
-        printf("Regrese a la pantalla de inicio (pulse la letra w)\n");
-        printf("2-Iniciar juego")
-    }
+    		if (opcion==1) { //Como limpiar pantalla
+    			printf ("\n");
+    			printf ("INSTRUCCIONES DE JUEGO\n");
+        		printf("1-Pulse iniciar sesion y a continuacion seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n");
+        		printf("Regrese a la pantalla de inicio pulsando la letra w\n");
+        		printf("2-Pulse iniciar juego");
+    		}
     
-    if (opcion==2) {
+    		if (opcion==2) {
         
-    }
+    		}
     
-    if (opcion==3) {
+    		if (opcion==3) {
         
-    }
+    		}
     
-    if (opcion==4) {
+    		if (opcion==4) {
         
-    }
+    		}
 
+	}
 
-
+	while (opcion!=5);
+	
 return 0;
 }
+
+
+
+
+
