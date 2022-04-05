@@ -55,6 +55,8 @@ int main() {
         		printf("1-Pulse iniciar sesion y a continuacion seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n");
         		printf("Regrese a la pantalla de inicio pulsando la letra W.\n");
         		printf("2-Pulse iniciar juego y disfrute de este.\n");
+        		printf ("\n");
+        		printf ("\n");
     		}
     
     		if (opcion==2) {
