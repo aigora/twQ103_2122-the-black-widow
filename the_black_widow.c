@@ -2,50 +2,48 @@
 
 int main() {
     int opcion;
-    
-	printf ("\n");
-	printf ("		   		.			 .\n");
-	printf ("				-			 -\n");
-	printf ("		  .    --			 --	    .\n");
-	printf ("		  -   --			  --    -\n");
-	printf ("		 --  --			 	   --   --\n");
-	printf ("		--    --			  --	 --\n");
-	printf ("	   --      --			 --		  --\n");
-	printf ("		--		--	 .   .  --		 --\n");
-	printf ("		 --       -- -- -- --  	    --\n");
-	printf ("	      --     --         --     --\n");
-	printf ("	       --   --           --   --\n");
-	printf ("	        -- --             -- --\n");
-	printf ("	            --           --\n");
-	printf ("	             --         --\n");
-	printf ("	 -- -- -- -- --         -- -- -- -- --\n");
-	printf ("	--    -- -- --           -- -- --    --\n");
-	printf ("  --    --    --             --    --    --\n");
-	printf (" --    --    --               --    --    --\n");
-	printf ("--    --    --                 --    --    --\n");
-	printf ("--   --    --                   --    --    --\n");
-	printf ("--  --      --                  --     --    --\n");
-	printf ("     --      --                --       --\n");
-	printf ("      --      --              --       --\n");
-	printf ("       --      --            --       --\n");
-	printf ("        --      --          --       --\n");
-	printf ("         --      --        --       --\n");
-	printf ("          --      -- -- -- -       --\n");
-	printf ("           --                     --\n");
-	printf ("            --                   --\n");
-	printf ("             --                 --\n");
-		
-	printf ("\n");
 	
 	do {
+		
+		printf ("                   .            .\n");
+		printf ("                   -            -\n");
+		printf ("             .    --            --     .\n");
+		printf ("             -   --              --    -\n");
+		printf ("            --  --                --   --\n");
+		printf ("           --    --              --     --\n");
+		printf ("          --      --            --       --\n");
+		printf ("           --      --  .    .  --       --\n");
+		printf ("            --       -- -- -- --  	    --\n");
+		printf ("             --     --         --     --\n");
+		printf ("              --   --           --   --\n");
+		printf ("               -- --             -- --\n");
+		printf ("                   --           --\n");
+		printf ("                    --         --\n");
+		printf ("        -- -- -- -- --         -- -- -- -- --\n");
+		printf ("       --    -- -- --           -- -- --    --\n");
+		printf ("      --    --    --             --    --    --\n");
+		printf ("     --    --    --      MENU     --    --    --\n");
+		printf ("    --    --    --                 --    --    --\n");
+		printf ("    --   --    --         DE        --    --    --\n");
+		printf ("    --  --      --                  --     --    --\n");
+		printf ("         --      --    OPCIONES    --       --\n");
+		printf ("          --      --              --       --\n");
+		printf ("           --      --            --       --\n");
+		printf ("            --      --          --       --\n");
+		printf ("             --      --        --       --\n");
+		printf ("              --      -- -- -- -       --\n");
+		printf ("               --                     --\n");
+		printf ("                --                   --\n");
+		printf ("                 --                 --\n");
+		
+		printf ("\n");
 	
-		printf ("MENU DE OPCIONES\n");
-		printf("Escriba el numero que representa la acción que desea realizar:\n");
-    		printf("1. Instrucciones del juego\n");
-    		printf("2. Iniciar  sesion\n");
-    		printf("3. Ranking de puntuaciones\n");
-   		printf("4. Iniciar juego\n");
-    		printf("5. Salir\n");
+		printf("  Escriba el numero que representa la accion que desea realizar:\n");
+    	printf("	1. Instrucciones del juego\n");
+    	printf("	2. Iniciar  sesion\n");
+    	printf("	3. Ranking de puntuaciones\n");
+   		printf("	4. Iniciar juego\n");
+    	printf("	5. Salir\n");
 
 		scanf("%d", &opcion);
 		
