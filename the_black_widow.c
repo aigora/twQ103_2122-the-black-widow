@@ -47,9 +47,6 @@ int main() {
    		printf("4. Iniciar juego\n");
     		printf("5. Salir\n");
 
-		scanf("%d", &opcion);
-
-		printf ("\n");
 
 		switch(opcion) {
 
@@ -75,6 +72,8 @@ int main() {
 
                 break;
 		}
+
+
 
 
 	}
