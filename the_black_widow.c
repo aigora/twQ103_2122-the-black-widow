@@ -71,29 +71,40 @@ int main() {
         	break;
 
             case 2:
-				printf ("Como deseas jugar?\n");
+            	printf("\n");
+				printf ("%cComo deseas jugar?\n",168);
 				printf ("A. Individual\n");
 				printf ("B. Multijugador\n"); //Habrá un máximo de tres jugadores 
 				fflush(stdin);
 				scanf ("%c", &modo_juego);
 				
-				switch(modo_juego) {
-					case 'a':
-					case 'A':
-						n=0;
-						printf ("En breves te adentraras en esta terrorifica experiencia a solas\n");
-						for (i=0;i<=n;i++){
-							printf ("Intruduce tu nombre\n");
-							fflush(stdin);
-							gets(Jugadores[i].nombre);
-						}
-					break;
-					
-					case 'B':
-					case 'b':
-						
-					break;		
+				if (modo_juego=='a'||modo_juego=='A'){
+					printf("\n");
+					n=1;
+					printf ("En breves te adentraras en esta terrorifica experiencia a solas\n");	
 				}
+					
+				else if (modo_juego=='b'||modo_juego=='B'){
+					printf("%cCuantos jugadores sois?\n",168);
+					scanf("%d", &n);
+				}
+						
+				for (i=1;i<=n;i++){
+					printf("\n");
+					printf ("Intruduce tu nombre\n");
+					fflush(stdin);
+					gets(Jugadores[i].nombre);
+					printf("\n");
+				}
+				
+				if (n=1) {
+					printf ("Bienvenido al juego, jugador\n");
+					printf("\n");
+				}
+				else {
+					printf ("Bienvenidos al juego, juegadores\n");
+					printf("\n");
+				}	
 				
             break;
 
@@ -113,9 +124,5 @@ int main() {
 printf ("El juego ha terminado\n");
 return 0;
 }
-
-
-
-
 
 
