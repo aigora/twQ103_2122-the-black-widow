@@ -1,7 +1,17 @@
 #include <stdio.h>
+#define TAM_MAX 2
+
+struct TJugador{
+	char nombre[50];
+	float puntuacion;
+	
+};
+
 
 int main() {
-    int opcion;
+    struct TJugador Jugadores[TAM_MAX];
+	int opcion,n,i;
+	char modo_juego;
 
 	printf ("\n");
 	printf ("                   .            .\n");
@@ -51,27 +61,50 @@ int main() {
 
 		switch(opcion) {
 
-            case 1: //Como limpiar pantalla
+            case 1: 
                 printf ("\n");
     			printf ("INSTRUCCIONES DE JUEGO\n");
         		printf("1-Pulse iniciar sesion y a continuacion seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n");
         		printf("Regrese a la pantalla de inicio pulsando la letra W.\n");
         		printf("2-Pulse iniciar juego y disfrute de este.\n");
 				printf ("\n");
-        		break;
+        	break;
 
             case 2:
-
-                break;
+				printf ("Como deseas jugar?\n");
+				printf ("A. Individual\n");
+				printf ("B. Multijugador\n"); //Habrá un máximo de tres jugadores 
+				fflush(stdin);
+				scanf ("%c", &modo_juego);
+				
+				switch(modo_juego) {
+					case 'a':
+					case 'A':
+						n=0;
+						printf ("En breves te adentraras en esta terrorifica experiencia a solas\n");
+						for (i=0;i<=n;i++){
+							printf ("Intruduce tu nombre\n");
+							fflush(stdin);
+							gets(Jugadores[i].nombre);
+						}
+					break;
+					
+					case 'B':
+					case 'b':
+						
+					break;		
+				}
+				
+            break;
 
 
             case 3:
 
-                break;
+            break;
 
             case 4:
 
-                break;
+            break;
 		}
 	}
 
