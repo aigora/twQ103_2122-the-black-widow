@@ -9,6 +9,7 @@ struct TJugador{
 
 };
 
+//Función para el banner 
 void Banner () {
 	printf ("\n");
 	printf ("                   .            .\n");
