@@ -1,3 +1,5 @@
+//Para limpiar la pantalla usar clear
+
 #include <stdio.h>
 #define TAM_MAX 2
 
@@ -7,16 +9,7 @@ struct TJugador{
 
 };
 
-
-int main() {
-    FILE*pfichero;
-    struct TJugador Jugadores[TAM_MAX];
-	int opcion,n,i;
-	char modo_juego;
-	//Defino variables ligadas a las vocales con tilde
-	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
-	
-
+void Banner () {
 	printf ("\n");
 	printf ("                   .            .\n");
 	printf ("                   -            -\n");
@@ -48,10 +41,24 @@ int main() {
 	printf ("               --                     --\n");
 	printf ("                --                   --\n");
 	printf ("                 --                 --\n");
-	
-	
-
 	printf ("\n");
+	
+	return;
+}
+
+
+
+int main() {
+    FILE*pfichero;
+    struct TJugador Jugadores[TAM_MAX];
+	int opcion,n,i;
+	char modo_juego;
+	
+	//Defino variables ligadas a las vocales con tilde
+	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
+	
+	//Extraer el banner a una función para que sea más claro 
+	Banner ();
 
 	do {
 
