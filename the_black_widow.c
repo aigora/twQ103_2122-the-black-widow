@@ -1,6 +1,8 @@
 //Para limpiar la pantalla usar clear
 
 #include <stdio.h>
+#include <stdlib.h>
+
 #define TAM_MAX 2
 
 struct TJugador{
@@ -76,15 +78,18 @@ int main() {
 		switch(opcion) {
 
             case 1:
+            	system("cls");
                 printf ("\n");
     			printf ("INSTRUCCIONES DE JUEGO\n");
         		printf("1-Pulse iniciar sesi%cn y a continuaci%cn seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n", o, o);
         		printf("El propio programa le volver%c a mostrar el men%c\n", a, u);
         		printf("2-Pulse iniciar juego y disfrute de este.\n");
 				printf ("\n");
+				printf ("\n");
         	break;
 
             case 2:
+            	system("cls");
             	printf("\n");
 				printf ("%cC%cmo deseas jugar?\n",168, o);
 				printf ("A. Individual\n");
@@ -124,6 +129,7 @@ int main() {
 
 
             case 3:
+            	system("cls");
                 pfichero = fopen ("puntuaciones.txt", "r");
                 if (pfichero == NULL) {
                     printf ("Error en la apertura del fichero\n");
