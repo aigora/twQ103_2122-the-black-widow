@@ -53,7 +53,7 @@ int main() {
     FILE*pfichero;
     struct TJugador Jugadores[TAM_MAX];
 	int opcion,n,i;
-	char modo_juego,respuesta;
+	char modo_juego,pregunta;
 
 	//Defino variables ligadas a las vocales con tilde
 	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
@@ -171,8 +171,8 @@ int main() {
 
                 fflush(stdin);
                 printf("Estás seguro de querer adentrarte? Responde si (s) o no (n):\n");
-                scanf("%c", &respuesta);
-                if (respuesta == 'n') {
+                scanf("%c", &pregunta);
+                if (pregunta == 'n') {
                     break;
                 }
                 system("cls");
