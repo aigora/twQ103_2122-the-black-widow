@@ -11,7 +11,7 @@ struct TJugador{
 
 };
 
-//Función para el banner 
+//Función para el banner
 void Banner () {
 	printf ("\n");
 	printf ("                   .            .\n");
@@ -45,7 +45,7 @@ void Banner () {
 	printf ("                --                   --\n");
 	printf ("                 --                 --\n");
 	printf ("\n");
-	
+
 	return;
 }
 
@@ -56,11 +56,11 @@ int main() {
     struct TJugador Jugadores[TAM_MAX];
 	int opcion,n,i;
 	char modo_juego;
-	
+
 	//Defino variables ligadas a las vocales con tilde
 	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
-	
-	//Extraer el banner a una función para que sea más claro 
+
+	//Extraer el banner a una función para que sea más claro
 	Banner ();
 
 	do {
@@ -116,7 +116,7 @@ int main() {
 					printf("\n");
 				}
 
-				if (n=1) {
+				if (n==1) {
 					printf ("Bienvenido al juego, jugador\n");
 					printf("\n");
 				}
