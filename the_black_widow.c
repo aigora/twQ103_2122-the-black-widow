@@ -53,7 +53,7 @@ int main() {
     FILE*pfichero;
     struct TJugador Jugadores[TAM_MAX];
 	int opcion,n,i;
-	char modo_juego;
+	char modo_juego,respuesta;
 
 	//Defino variables ligadas a las vocales con tilde
 	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
@@ -120,7 +120,7 @@ int main() {
 				}
 				else {
 					printf ("Bienvenidos al juego, juegadores\n");
-					printf ("Sabia decision no adentrarse a solas en esta experiencia\n");
+					printf ("Sabia decisi%cn no adentrarse a solas en esta experiencia\n",o);
 					printf("\n");
 				}
 
@@ -144,12 +144,51 @@ int main() {
             break;
 
             case 4:
+                system("cls");
+                printf("Año 4505, el mundo tal y como lo conocíamos ha acabado. El culpable: un virus, conocido\n");
+                printf("como la Viuda Negra. No sabemos cómo se originó el virus, ni cómo se transmite. Sólo\n");
+                printf("sabemos que se transmite muy rápido y que en sus fases iniciales los infectados presentan una\n");
+                printf("marca que parece una araña, y se va extendiendo en forma de líneas como si de una telaraña se\n");
+                printf("tratase hasta llegar al corazón. Llegado este momento, produce la muerte del contagiado.\n");
+                printf("\n");
+                printf("Al principio los hospitales estaban colapsados, pero ahora simplemente están abandonados,\n");
+                printf("faltos de vida; las tiendas están destrozadas vacías a excepción de los estantes que aun siguen\n");
+                printf("allí, pero desprovistos de suministros.\n");
+                printf("\n");
+                printf("La poca gente que queda sin infectar se comporta de forma extraña, son violentos, ajenos a los\n");
+                printf("demás a excepción de ellos mismos; solitarios. Sin embargo, no todos hemos reaccionado igual\n");
+                printf("ante la crisis, algunos hemos decidido pasar a la acción y buscar una cura, pero no fue tan fácil,\n");
+                printf("de hecho fue imposible. A partir de ahí, nuestra fe en encontrar la cura fue decayendo hasta\n");
+                printf("que el teniente Rogers tuvo la idea de formar un pequeño grupo de selectos soldados al que\n");
+                printf("denominó La Resistencia.\n");
+                printf("\n");
+                printf("Vosotros sois la resistencia.\n");
+                printf("\n");
+                printf("Nuestro principal deber es detener la expansión del virus, pero antes... Tenéis que pasar una prueba.\n");
+                printf("\n");
+                printf("El examen consta de cuatro niveles, elaborados con el fin de medir vuestras capacidades.\n");
+                printf("\n");
+
+                fflush(stdin);
+                printf("Estás seguro de querer adentrarte? Responde si (s) o no (n):\n");
+                scanf("%c", &respuesta);
+                if (respuesta == 'n') {
+                    break;
+                }
+                system("cls");
+
+
+
+
+
+
 
             break;
 		}
 	}
 
 	while (opcion!=5);
+	system("cls");
 
 printf ("El juego ha terminado\n");
 return 0;
