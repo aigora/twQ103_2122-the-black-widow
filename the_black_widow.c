@@ -98,7 +98,6 @@ int main() {
 				if (modo_juego=='a'||modo_juego=='A'){
 					printf("\n");
 					n=1;
-					printf ("En breves te adentraras en esta terror%cfica experiencia a solas\n", it);
 				}
 
 				else if (modo_juego=='b'||modo_juego=='B'){
@@ -116,10 +115,12 @@ int main() {
 
 				if (n==1) {
 					printf ("Bienvenido al juego, jugador\n");
+					printf ("En breves te adentraras en esta terror%cfica experiencia a solas\n", it);
 					printf("\n");
 				}
 				else {
 					printf ("Bienvenidos al juego, juegadores\n");
+					printf ("Sabia decision no adentrarse a solas en esta experiencia\n");
 					printf("\n");
 				}
 
