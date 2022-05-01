@@ -1,5 +1,3 @@
-//Para limpiar la pantalla usar clear
-
 #include <stdio.h>
 #include <stdlib.h>
 
