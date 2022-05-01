@@ -57,6 +57,8 @@ int main() {
 
 	//Defino variables ligadas a las vocales con tilde
 	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
+	char interrogacion=168;
+	char enne=164; 
 
 	//Extraer el banner a una función para que sea más claro
 	Banner ();
@@ -89,7 +91,7 @@ int main() {
             case 2:
             	system("cls");
             	printf("\n");
-				printf ("%cC%cmo deseas jugar?\n",168, o);
+				printf ("%cC%cmo deseas jugar?\n", interrogacion, o);
 				printf ("A. Individual\n");
 				printf ("B. Multijugador\n"); //Habrá un máximo de tres jugadores
 				fflush(stdin);
@@ -101,7 +103,7 @@ int main() {
 				}
 
 				else if (modo_juego=='b'||modo_juego=='B'){
-					printf("%cCu%cntos jugadores sois?\n",168, a);
+					printf("%cCu%cntos jugadores sois?\n", interrogacion, a);
 					scanf("%d", &n);
 				}
 
@@ -145,32 +147,32 @@ int main() {
 
             case 4:
                 system("cls");
-                printf("Año 4505, el mundo tal y como lo conocíamos ha acabado. El culpable: un virus, conocido\n");
-                printf("como la Viuda Negra. No sabemos cómo se originó el virus, ni cómo se transmite. Sólo\n");
-                printf("sabemos que se transmite muy rápido y que en sus fases iniciales los infectados presentan una\n");
-                printf("marca que parece una araña, y se va extendiendo en forma de líneas como si de una telaraña se\n");
-                printf("tratase hasta llegar al corazón. Llegado este momento, produce la muerte del contagiado.\n");
+                printf("A%co 4505, el mundo tal y como lo conoc%camos ha acabado. El culpable: un virus, conocido\n", enne, it);
+                printf("como la Viuda Negra. No sabemos c%cmo se origin%c el virus, ni c%cmo se transmite. S%clo\n", o, o, o, o);
+                printf("sabemos que se transmite muy r%cpido y que en sus fases iniciales los infectados presentan una\n", a);
+                printf("marca que parece una ara%ca, y se va extendiendo en forma de l%cneas como si de una telara%ca se\n", enne, it, enne);
+                printf("tratase hasta llegar al coraz%cn. Llegado este momento, produce la muerte del contagiado.\n", o);
                 printf("\n");
-                printf("Al principio los hospitales estaban colapsados, pero ahora simplemente están abandonados,\n");
-                printf("faltos de vida; las tiendas están destrozadas vacías a excepción de los estantes que aun siguen\n");
-                printf("allí, pero desprovistos de suministros.\n");
+                printf("Al principio los hospitales estaban colapsados, pero ahora simplemente est%cn abandonados,\n", a);
+                printf("faltos de vida; las tiendas est%cn destrozadas vac%cas a excepci%cn de los estantes que aun siguen\n", a, it, o);
+                printf("all%c, pero desprovistos de suministros.\n", it);
                 printf("\n");
                 printf("La poca gente que queda sin infectar se comporta de forma extraña, son violentos, ajenos a los\n");
-                printf("demás a excepción de ellos mismos; solitarios. Sin embargo, no todos hemos reaccionado igual\n");
-                printf("ante la crisis, algunos hemos decidido pasar a la acción y buscar una cura, pero no fue tan fácil,\n");
-                printf("de hecho fue imposible. A partir de ahí, nuestra fe en encontrar la cura fue decayendo hasta\n");
-                printf("que el teniente Rogers tuvo la idea de formar un pequeño grupo de selectos soldados al que\n");
-                printf("denominó La Resistencia.\n");
+                printf("dem%cs a excepci%cn de ellos mismos; solitarios. Sin embargo, no todos hemos reaccionado igual\n", a, o);
+                printf("ante la crisis, algunos hemos decidido pasar a la acci%cn y buscar una cura, pero no fue tan f%ccil,\n", o, a);
+                printf("de hecho fue imposible. A partir de ah%c, nuestra fe en encontrar la cura fue decayendo hasta\n", it);
+                printf("que el teniente Rogers tuvo la idea de formar un peque%co grupo de selectos soldados al que\n", enne);
+                printf("denomin%c La Resistencia.\n", o);
                 printf("\n");
                 printf("Vosotros sois la resistencia.\n");
                 printf("\n");
-                printf("Nuestro principal deber es detener la expansión del virus, pero antes... Tenéis que pasar una prueba.\n");
+                printf("Nuestro principal deber es detener la expansi%cn del virus, pero antes... Ten%cis que pasar una prueba.\n", o, e);
                 printf("\n");
                 printf("El examen consta de cuatro niveles, elaborados con el fin de medir vuestras capacidades.\n");
                 printf("\n");
 
                 fflush(stdin);
-                printf("Estás seguro de querer adentrarte? Responde si (s) o no (n):\n");
+                printf("%cEst%cs seguro de querer adentrarte? Responde si (s) o no (n):\n", interrogacion, a);
                 scanf("%c", &pregunta);
                 if (pregunta == 'n') {
                     break;
