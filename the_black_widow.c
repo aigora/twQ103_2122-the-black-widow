@@ -178,6 +178,89 @@ int main() {
                     break;
                 }
                 system("cls");
+                
+                printf("La prueba empieza en: \n");
+                printf("3\n");
+                printf("2\n");
+                printf("1\n");
+                
+                printf("\n \n");
+                
+                // Nivel fácil
+                
+                // Pregunta 1
+                printf("%cA qu%c se dedicaba Aracne antes de ser convertida?\n", interrogacion, e);
+                printf("a. Tejedora\n"); // Correcta
+                printf("b. Costurera\n");
+                printf("c. Sastre\n");
+                printf("d. Diseñadora\n");
+                
+                // Pregunta 2
+                printf("%cCu%cl es el nombre de la actriz que interpreta a La Viuda Negra en Los Vengadores?\n", interrogacion, a);
+                printf("a. Sof%ca Vergara\n", it);
+                printf("b. Scarlett Johansson\n"); // Correcta
+                printf("c. Elizabeth Olsen\n");
+                printf("d. Natalie Portman\n");
+                
+                // Pregunta 3
+                printf("%cC%cmo se llama el miedo a las ara%cas?\n", interrogacion, o, enne);
+                // Aracnofobia
+                
+                // Pregunta 4
+                printf("Realiza la clasificaci%cn taxon%cmica de las ara%cas en: reino, filo, clase\n", o, o, enne);
+                printf("a. Animalia - Artr%cpodos - Ar%cnidos\n", o, a); // Correcta
+                printf("b. Ar%cnidos - Moluscos - Animalia\n", a); 
+                printf("c. Artr%cpodos - Mam%cferos - Ar%cnidos\n", o, it, a);
+                printf("d. Animalia - Mam%cferos - Ar%cnidos\n", it, a);
+                
+                // Pregunta 5
+                printf("%cEn cu%cal reconocida organizaci%cn estuvo trabajando Viuda Negra junto con otros supreh%croes?\n", interrogacion, it, e);
+                printf("a. S.H.I.E.L.D\n"); // Correcta
+                printf("b. S.I.D\n"); 
+                printf("c. S.I.D.E\n");
+                printf("d. F.I.L.E\n");
+                
+                // Pregunta 6
+                printf("Nombre de la escritora que public%c en 2020 de la mano de Disney Libros un libro sobre el famoso personaje Viuda Negra\n", o);
+                printf("a. Cassandra Clare\n");
+                printf("b. Holly Black\n"); 
+                printf("c. Rick Riordan\n");
+                printf("d. Margaret Stohl\n"); // Correcta
+                
+                // Pregunta 7
+                printf("%cCu%ctos ojos tiene una ara%ca?\n", interrogacion, enne);
+                printf("a. 5\n");
+                printf("b. 2\n"); 
+                printf("c. 4\n");
+                printf("d. 8\n"); // Correcta
+                
+                // Pregunta 8
+                printf("%cQu%c personaje no forma parte de Los Vengadores?\n", interrogacion, e);
+                printf("a. Soldado de invierno\n"); // Correcta
+                printf("b. Ojo de Halc%cn\n", o); 
+                printf("c. Thor\n");
+                printf("d. Capit%cn Am%crica\n", a, e);
+                
+                // Pregunta 9
+                printf("%cEn qu%c pel%ccula de Harry Potter aparecen ara%cas? (Solo dos palabras)\n", interrogacion, it, enne);
+                // Cámara Secreta
+                
+                // Pregunta 10
+                printf("%CC%cmo Peter Parker se convirti%c en Spiderman?\n", interrogacion, o, o);
+                printf("a. Por comerse una ara%ca\n", enne);
+                printf("b. Por el mordisco de una ara%ca\n", enne); 
+                printf("c. Por tocar una telara%ca\n", enne);
+                printf("d. Al ser maldecido por una bruja\n");
+                
+                // Nivel intermedio
+                
+                // Pregunta 10
+                printf("\n");
+                printf("a. \n");
+                printf("b. \n"); 
+                printf("c. \n");
+                printf("d. \n");
+
 
 
 
