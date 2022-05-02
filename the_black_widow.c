@@ -58,7 +58,7 @@ int main() {
 	//Defino variables ligadas a las vocales con tilde
 	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
 	char interrogacion=168;
-	char enne=164; 
+	char enne=164;
 
 	//Extraer el banner a una función para que sea más claro
 	Banner ();
@@ -178,130 +178,182 @@ int main() {
                     break;
                 }
                 system("cls");
-                
+
                 printf("La prueba empieza en: \n");
                 printf("3\n");
                 printf("2\n");
                 printf("1\n");
-                
+
                 printf("\n \n");
-                
+
                 // Nivel fácil
-                
+
                 // Pregunta 1
                 printf("%cA qu%c se dedicaba Aracne antes de ser convertida?\n", interrogacion, e);
                 printf("a. Tejedora\n"); // Correcta
                 printf("b. Costurera\n");
                 printf("c. Sastre\n");
                 printf("d. Diseñadora\n");
-                
+
                 // Pregunta 2
                 printf("%cCu%cl es el nombre de la actriz que interpreta a La Viuda Negra en Los Vengadores?\n", interrogacion, a);
                 printf("a. Sof%ca Vergara\n", it);
                 printf("b. Scarlett Johansson\n"); // Correcta
                 printf("c. Elizabeth Olsen\n");
                 printf("d. Natalie Portman\n");
-                
+
                 // Pregunta 3
                 printf("%cC%cmo se llama el miedo a las ara%cas?\n", interrogacion, o, enne);
                 // Aracnofobia
-                
+
                 // Pregunta 4
                 printf("Realiza la clasificaci%cn taxon%cmica de las ara%cas en: reino, filo, clase\n", o, o, enne);
                 printf("a. Animalia - Artr%cpodos - Ar%cnidos\n", o, a); // Correcta
-                printf("b. Ar%cnidos - Moluscos - Animalia\n", a); 
+                printf("b. Ar%cnidos - Moluscos - Animalia\n", a);
                 printf("c. Artr%cpodos - Mam%cferos - Ar%cnidos\n", o, it, a);
                 printf("d. Animalia - Mam%cferos - Ar%cnidos\n", it, a);
-                
+
                 // Pregunta 5
                 printf("%cEn cu%cal reconocida organizaci%cn estuvo trabajando Viuda Negra junto con otros supreh%croes?\n", interrogacion, it, e);
                 printf("a. S.H.I.E.L.D\n"); // Correcta
-                printf("b. S.I.D\n"); 
+                printf("b. S.I.D\n");
                 printf("c. S.I.D.E\n");
                 printf("d. F.I.L.E\n");
-                
+
                 // Pregunta 6
                 printf("Nombre de la escritora que public%c en 2020 de la mano de Disney Libros un libro sobre el famoso personaje Viuda Negra\n", o);
                 printf("a. Cassandra Clare\n");
-                printf("b. Holly Black\n"); 
+                printf("b. Holly Black\n");
                 printf("c. Rick Riordan\n");
                 printf("d. Margaret Stohl\n"); // Correcta
-                
+
                 // Pregunta 7
                 printf("%cCu%ctos ojos tiene una ara%ca?\n", interrogacion, enne);
                 printf("a. 5\n");
-                printf("b. 2\n"); 
+                printf("b. 2\n");
                 printf("c. 4\n");
                 printf("d. 8\n"); // Correcta
-                
+
                 // Pregunta 8
                 printf("%cQu%c personaje no forma parte de Los Vengadores?\n", interrogacion, e);
                 printf("a. Soldado de invierno\n"); // Correcta
-                printf("b. Ojo de Halc%cn\n", o); 
+                printf("b. Ojo de Halc%cn\n", o);
                 printf("c. Thor\n");
                 printf("d. Capit%cn Am%crica\n", a, e);
-                
+
                 // Pregunta 9
                 printf("%cEn qu%c pel%ccula de Harry Potter aparecen ara%cas? (Solo dos palabras)\n", interrogacion, it, enne);
                 // Cámara Secreta
-                
+
                 // Pregunta 10
                 printf("%CC%cmo Peter Parker se convirti%c en Spiderman?\n", interrogacion, o, o);
                 printf("a. Por comerse una ara%ca\n", enne);
-                printf("b. Por el mordisco de una ara%ca\n", enne); 
+                printf("b. Por el mordisco de una ara%ca\n", enne);
                 printf("c. Por tocar una telara%ca\n", enne);
                 printf("d. Al ser maldecido por una bruja\n");
-                
+
                 // Nivel intermedio
-                
+
                 // Pregunta 1
                 printf("%cDe qu%c animal huyen las ara%cas en Harry Potter?\n", interrogacion, e, enne);
                 printf("a. Basilisco\n"); //Correcta
-                printf("b. Iguana\n"); 
+                printf("b. Iguana\n");
                 printf("c. Lagarto\n");
                 printf("d. Cobra\n");
-                
+
                 // Pregunta 2
                 printf("%cCu%cl es el nombre de pila de La Viuda Negra?\n", interrogacion, a);
-                printf("a. Natasha Romanova\n"); 
-                printf("b. Natalia Romanoff\n"); 
+                printf("a. Natasha Romanova\n");
+                printf("b. Natalia Romanoff\n");
                 printf("c. Natalia Romanova\n");
                 printf("d. Natasha Romanoff\n"); //Correcta
-                
+
                 // Pregunta 3
                 printf("%cQu%c color atrae a las ara%cas?\n", interrogacion, e, enne);
                 printf("a. Rojo\n");
-                printf("b. Negro\n"); 
+                printf("b. Negro\n");
                 printf("c. Verde\n"); //Correcta
                 printf("d. Blanco\n");
-                
+
                 // Pregunta 4
                 printf("%cCu%cntos a%cos pueden vivir una tar%cntula?\n", interrogacion, a, enne, a);
                 printf("a. 34 a%cos\n", enne);
-                printf("b. 35 a%cos\n", enne); 
+                printf("b. 35 a%cos\n", enne);
                 printf("c. 30 a%cos\n", enne); //Correcta
                 printf("d. 29 a%cos\n", enne);
-                
+
                 // Pregunta 5
                 printf("Nombre de la ara%ca que pic%c a Fran Cuesta en 2020?\n", enne, o);
                 printf("a. Tar%cntula\n", a);
-                printf("b. Viuda Negra\n"); 
+                printf("b. Viuda Negra\n");
                 printf("c. Ara%ca Huntsman\n", enne); //Correcta
                 printf("d. Ara%ca saltarina\n", enne);
-                
+
                 // Pregunta 6
                 printf("%cQu%c tipo de ara%ca pic% a Peter Parker?\n", interrogacion, e, enne, o);
                 printf("a. Ara%ca del Banano\n", enne);
-                printf("b. Ara%ca lobo\n", enne); 
+                printf("b. Ara%ca lobo\n", enne);
                 printf("c. Viuda Negra\n");
                 printf("d. Ara%ca espalda roja\n", enne);
-                
+
                 //Nivel difícil
-				
-				// Pregunta 10
+
+				// Pregunta 1
+                printf("%cPor qu%c Atenea convirti%c a Aracne?\n", interrogacion, e, o);
+                printf("a. Por desafiarla\n");
+                printf("b. Por perder en una competici%cn contra ella\n",o); //Correcta
+                printf("c. Por proponer un tema inapropiado en la conversaci%cn\n", o);
+                printf("d. Por intentar matar a uno de los hijos de Atenea\n");
+
+                // Pregunta 2
+                printf("%cCu%cntas familias de ara%cas han sido reconocidas?\n", interrogacion, a, enne);
+                printf("a. 221\n");
+                printf("b. 110\n"); //Correcta
+                printf("c. 95\n");
+                printf("d. 257\n");
+
+                // Pregunta 3
+                printf("%cQu%c nombre recibe la instalaci%cn donde la esp%ca sovi%ctica apodada Viuda Negra fue entrenada?\n", interrogacion, e, o, it, e);
+                printf("a. Sala roja\n");
+                printf("b. Habitaci%cn roja\n", o); //Correcta
+                printf("c. Cuarto rojo\n");
+                printf("d. Cuarto negro\n");
+
+                // Pregunta 4
+                printf("%cC%cmo se dice ara%ca en lat%cn?\n", interrogacion, o, enne, it);
+                //aranea
+
+                // Pregunta 5
+                printf("En la pel%ccula de Marvel sobre la Viuda Negra, %cc%cmo se llama la hermana de Natasha Romanoff?\n", it, interrogacion, o);
+                printf("a. Melina Vostokoff\n");
+                printf("b. Yelena Belova\n"); //Correcta
+                printf("c. Alexei Shostakov\n");
+                printf("d. Katia Novikov\n");
+
+                // Pregunta 6
+                printf("Dentro de este programa hemos escondido una ara%ca, %cd%cnde est%c?\n", enne, interrogacion, o, a);
+                //Inicio, arriba, etc
+
+                // Pregunta 7
+                printf("%cCu%cl es la ara%ca m%cs peligrosa del mundo?\n", interrogacion, a, enne, a);
+                printf("a. Ara%ca ba%canera\n", enne, enne);
+                printf("b. Errante del banano\n"); //Correcta
+                printf("c. Errante de seda\n");
+                printf("d. Ara%ca violinista\n", enne);
+
+                // Pregunta 8
+                printf("%cCu%cntas especies de ara%cas existen?\n", interrogacion, a, enne);
+                printf("a. 47957\n");
+                printf("b. 41800\n");
+                printf("c. 46500\n"); //Correcta
+                printf("d. 45500\n");
+
+                //Nivel Muy Difícil
+
+                // Pregunta 10
                 printf("\n");
                 printf("a. \n");
-                printf("b. \n"); 
+                printf("b. \n");
                 printf("c. \n");
                 printf("d. \n");
 
