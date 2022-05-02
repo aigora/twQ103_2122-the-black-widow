@@ -350,12 +350,47 @@ int main() {
 
                 //Nivel Muy Difícil
 
-                // Pregunta 10
-                printf("\n");
-                printf("a. \n");
-                printf("b. \n");
-                printf("c. \n");
-                printf("d. \n");
+                // Pregunta 1
+                printf("%cEn qu%c se convirti%c Benedict Lightwood?\n", interrogacion, e, o);
+                printf("a. Un gusano\n"); // Correcta
+                printf("b. Una ara%ca\n", enne);
+                printf("c. Un pato\n");
+                printf("d. Un demonio\n");
+                
+                // Pregunta 2
+                printf("%cC%cmo se llaman las ara%cas cuya seda es tan resistente como una armadura? (Libro: Trono de Cristal)\n", interrogacion, o, enne);
+                printf("a. Las ara%cas Stygia\n", enne); // Correcta
+                printf("b. No hay ara%cas\n", enne);
+                printf("c. Las ara%cas Stigya\n", enne);
+                printf("d. Las ara%cas de Stigia\n", enne);
+                
+                // Pregunta 3
+                printf("%cCu%cl de estas no es un arma de Viuda Negra?\n", interrogacion, a);
+                printf("a. Mordida de la viuda\n");
+                printf("b. L%cnea Viuda\n", it);
+                printf("c. La caricia de la viuda\n"); // Correcta
+                printf("d. EL beso de la viuda\n");
+                
+                // Pregunta 4
+                printf("%cC%como se apellida el l%cder de la organizaci%cn sovi%ctica que reclut%c a la despu%cs conocida como Viuda Negra?\n", interrogacion, o, it, o, e, o, e);
+                printf("a. Malakov\n");
+                printf("b. Dreykov\n"); // Correcta
+                printf("c. Davanova\n");
+                printf("d. Petrova\n");
+                
+                // Pregunta 5
+                printf("%cQu%c tipo de ara%ca es Aragog?\n", interrogacion, e, enne);
+                printf("a. Tar%cntula\n", a);
+                printf("b. Acrom%ctula\n", a);  // Correcta
+                printf("c. Tar%cntula Goliat\n", a);
+                printf("d. Bagheera Kiplingi\n");
+                
+                // Pregunta 6
+                printf("%cQu%c le preguntan a Luke Garroway que colecciona despu%cs  de que Clary Fairchild le pusiera la runa sin miedo a Alec Lightwood?\n", interrogacion, e, e);
+                printf("a. %cColeccionas ara%cas?\n", interrogacion, enne);
+                printf("b. %cTienes una ara%ca?\n", interrogacion, enne);
+                printf("c. %cSabes d%cde hay una ara%ca?\n", interrogacion, o, enne);
+                printf("d. No le preguntan nada\n");
 
 
 
