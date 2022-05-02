@@ -254,7 +254,51 @@ int main() {
                 
                 // Nivel intermedio
                 
-                // Pregunta 10
+                // Pregunta 1
+                printf("%cDe qu%c animal huyen las ara%cas en Harry Potter?\n", interrogacion, e, enne);
+                printf("a. Basilisco\n"); //Correcta
+                printf("b. Iguana\n"); 
+                printf("c. Lagarto\n");
+                printf("d. Cobra\n");
+                
+                // Pregunta 2
+                printf("%cCu%cl es el nombre de pila de La Viuda Negra?\n", interrogacion, a);
+                printf("a. Natasha Romanova\n"); 
+                printf("b. Natalia Romanoff\n"); 
+                printf("c. Natalia Romanova\n");
+                printf("d. Natasha Romanoff\n"); //Correcta
+                
+                // Pregunta 3
+                printf("%cQu%c color atrae a las ara%cas?\n", interrogacion, e, enne);
+                printf("a. Rojo\n");
+                printf("b. Negro\n"); 
+                printf("c. Verde\n"); //Correcta
+                printf("d. Blanco\n");
+                
+                // Pregunta 4
+                printf("%cCu%cntos a%cos pueden vivir una tar%cntula?\n", interrogacion, a, enne, a);
+                printf("a. 34 a%cos\n", enne);
+                printf("b. 35 a%cos\n", enne); 
+                printf("c. 30 a%cos\n", enne); //Correcta
+                printf("d. 29 a%cos\n", enne);
+                
+                // Pregunta 5
+                printf("Nombre de la ara%ca que pic%c a Fran Cuesta en 2020?\n", enne, o);
+                printf("a. Tar%cntula\n", a);
+                printf("b. Viuda Negra\n"); 
+                printf("c. Ara%ca Huntsman\n", enne); //Correcta
+                printf("d. Ara%ca saltarina\n", enne);
+                
+                // Pregunta 6
+                printf("%cQu%c tipo de ara%ca pic% a Peter Parker?\n", interrogacion, e, enne, o);
+                printf("a. Ara%ca del Banano\n", enne);
+                printf("b. Ara%ca lobo\n", enne); 
+                printf("c. Viuda Negra\n");
+                printf("d. Ara%ca espalda roja\n", enne);
+                
+                //Nivel difícil
+				
+				// Pregunta 10
                 printf("\n");
                 printf("a. \n");
                 printf("b. \n"); 
