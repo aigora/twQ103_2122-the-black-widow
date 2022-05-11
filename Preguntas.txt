@@ -1,26 +1,6 @@
- // NIVEL FÁCIL
+ 		// NIVEL FÁCIL
 
-				system("cls");
-				printf ("NIVEL F%cCIL\n", aa);
-				
-                // Pregunta 1
-                fflush(stdin);
-                printf("%cA qu%c se dedicaba Aracne antes de ser convertida?\n", interrogacion, e);
-                printf("a. Tejedora\n"); // Correcta
-                printf("b. Costurera\n");
-                printf("c. Sastre\n");
-                printf("d. Dise%cadora\n", enne);
-                
-                scanf ("%c", &respuesta);
-                
-                
-                
-				// Pregunta 2
-                printf("%cCu%cl es el nombre de la actriz que interpreta a La Viuda Negra en Los Vengadores?\n", interrogacion, a);
-                printf("a. Sof%ca Vergara\n", it);
-                printf("b. Scarlett Johansson\n"); // Correcta
-                printf("c. Elizabeth Olsen\n");
-                printf("d. Natalie Portman\n");
+		
 
                 // Pregunta 3
                 printf("%cC%cmo se llama el miedo a las ara%cas?\n", interrogacion, o, enne);
