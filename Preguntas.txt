@@ -48,7 +48,7 @@
                 // Pregunta 10
                 printf("%CC%cmo Peter Parker se convirti%c en Spiderman?\n", interrogacion, o, o);
                 printf("a. Por comerse una ara%ca\n", enne);
-                printf("b. Por el mordisco de una ara%ca\n", enne);
+                printf("b. Por el mordisco de una ara%ca\n", enne);b //Correcta
                 printf("c. Por tocar una telara%ca\n", enne);
                 printf("d. Al ser maldecido por una bruja\n");
 
