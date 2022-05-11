@@ -1,12 +1,78 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <locale.h>
 
-#define TAM_MAX 2
+#define TAM_JUGADORES 2
+#define TAM_MAX 300
 
+//Estructuras con las soluciones a las preguntas
+struct TNivelFacil {
+	char pregunta1;
+	char pregunta2;
+	char pregunta3 [30];
+	char pregunta4;
+	char pregunta5;
+	char pregunta6;
+	char pregunta7;
+	char pregunta8;
+	char pregunta9 [20];
+};
+
+struct TNivelMedio {
+	char pregunta1;
+	char pregunta2;
+	char pregunta3 [30];
+	char pregunta4;
+	char pregunta5;
+	char pregunta6;
+};
+
+struct TNivelDificil {
+	char pregunta1;
+	char pregunta2;
+	char pregunta3;
+	char pregunta4 [30];
+	char pregunta5;
+	char pregunta6 [30];
+	char pregunta7;
+	char pregunta8;
+};
+
+
+//Estructura con la informacion de los jugadores
 struct TJugador{
 	char nombre[50];
-	float puntuacion;
+	int puntuacion;
+	int ultima_pregunta;
 
+};
+
+//Estructura histórica
+struct THistorica{
+	char nombre[50];
+	int puntuacion;
+	int ultima_pregunta;
+
+};
+
+//Función para las respuestas de los jugadores
+
+int PreguntasTest (char respuesta, char solucion) {
+	int puntuacion=0;
+	
+	if (respuesta==solucion) {
+		printf ("Has ganado 5 puntos\n");
+		puntuacion += 5;
+	}
+	else {
+		printf ("Respuesta incorrecta\n");
+		puntuacion -= 1;
+	}
+	
+	printf ("%d\n", puntuacion);
+	
+return puntuacion;
 };
 
 //Función para el banner
@@ -51,16 +117,34 @@ void Banner () {
 
 int main() {
     FILE*pfichero;
-    struct TJugador Jugadores[TAM_MAX];
-	int opcion,n,i;
-	char modo_juego,pregunta;
+	int opcion,n;
+	char pregunta;
+	char respuesta;
 
+	
+	//Nos permite poner tildes
+	setlocale (LC_CTYPE,"spanish");
+	
+	//Variables para bucles
+	int i, j;
+	
+	//Estructura de jugadores e historica de jugadores
+	struct TJugador Jugador;
+	struct THistorica Historicas[TAM_MAX];
+	
+	//Estructuras con las soluciones a los niveles
+	struct TNivelFacil NivelFacil = {'a', 'b', "aracnofobia", 'a', 'a', 'd', 'd', 'a', "camara secreta"};
+	struct TNivelMedio NivelMedio = {'a', 'd', 'c', 'c', 'c', 'c'};
+	
 	//Defino variables ligadas a las vocales con tilde
 	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
 	char interrogacion=168;
 	char enne=164;
+	
+	//Varible para comparar cadenas
+	int comparar;
 
-	//Extraer el banner a una función para que sea más claro
+	//Funcion que contiene el banner
 	Banner ();
 
 	do {
@@ -81,9 +165,8 @@ int main() {
             	system("cls");
                 printf ("\n");
     			printf ("INSTRUCCIONES DE JUEGO\n");
-        		printf("1-Pulse iniciar sesi%cn y a continuaci%cn seleccione si quiere jugar de forma individual o multijugador, e introduzca el nombre de los participantes.\n", o, o);
-        		printf("El propio programa le volver%c a mostrar el men%c\n", a, u);
-        		printf("2-Pulse iniciar juego y disfrute de este.\n");
+        		printf("1-Pulse iniciar sesi%cn e introduzca su nombre.\n", o);
+        		printf("2-El propio programa le volverá a mostrar el menú, a continuación pulse iniciar juego y disfrute de este.\n");
 				printf ("\n");
 				printf ("\n");
         	break;
@@ -91,40 +174,39 @@ int main() {
             case 2:
             	system("cls");
             	printf("\n");
-				printf ("%cC%cmo deseas jugar?\n", interrogacion, o);
-				printf ("A. Individual\n");
-				printf ("B. Multijugador\n"); //Habrá un máximo de tres jugadores
+				
+				//Añado la información almacenada en el txt a un vector de estructuras
+				pfichero=fopen ("puntuaciones.txt", "r");
+			
+				printf ("Intruduce tu nombre jugador: \n");
 				fflush(stdin);
-				scanf ("%c", &modo_juego);
-
-				if (modo_juego=='a'||modo_juego=='A'){
-					printf("\n");
-					n=1;
+				gets(Jugador.nombre);
+				printf("\n");
+				
+				i=0;
+				while (fscanf (pfichero, "%s %d %d", Historicas[i].nombre, &Historicas[i].puntuacion, &Historicas[i].ultima_pregunta) != EOF){
+					comparar = strcmp (Jugador.nombre, Historicas[i].nombre);
+				
+					if (comparar==0) {
+						Jugador.puntuacion=Historicas[i].puntuacion;
+						Jugador.ultima_pregunta=Historicas[i].ultima_pregunta;
+					}
+					else {
+						Jugador.puntuacion=0;
+						Jugador.ultima_pregunta=0;
+					}
+					i++;
 				}
-
-				else if (modo_juego=='b'||modo_juego=='B'){
-					printf("%cCu%cntos jugadores sois?\n", interrogacion, a);
-					scanf("%d", &n);
-				}
-
-				for (i=1;i<=n;i++){
-					printf("\n");
-					printf ("Intruduce tu nombre\n");
-					fflush(stdin);
-					gets(Jugadores[i].nombre);
-					printf("\n");
-				}
-
-				if (n==1) {
-					printf ("Bienvenido al juego, jugador\n");
-					printf ("En breves te adentraras en esta terror%cfica experiencia a solas\n", it);
-					printf("\n");
-				}
-				else {
-					printf ("Bienvenidos al juego, juegadores\n");
-					printf ("Sabia decisi%cn no adentrarse a solas en esta experiencia\n",o);
-					printf("\n");
-				}
+				
+				fclose (pfichero);
+				
+				
+				printf ("\n");
+	
+				printf ("Bienvenido al juego, jugador\n");
+				printf ("(Usa una voz de villano de Disney)\n");
+				printf ("En breves te adentraras en esta terror%cfica experiencia a solas\n", it);
+				printf("\n");
 
             break;
 
@@ -137,8 +219,8 @@ int main() {
                     return 0;
                 }
                 i=0;
-                while (fscanf(pfichero, "%s %f",Jugadores[i].nombre, &Jugadores[i].puntuacion) != EOF) {
-                    printf("%s %f\n", Jugadores[i].nombre, &Jugadores[i].puntuacion);
+                while (fscanf(pfichero, "%s %d %d",Historicas[i].nombre, &Historicas[i].puntuacion, &Historicas[i].ultima_pregunta) != EOF) {
+                    printf("%s %d\n", Historicas[i].nombre, Historicas[i].puntuacion);
                     i++;
                 }
                 printf("\n");
@@ -186,218 +268,22 @@ int main() {
 
                 printf("\n \n");
 
-                // Nivel fácil
+                // NIVEL FÁCIL
 
+				system("cls");
+				printf ("NIVEL F%cCIL\n", aa);
+				
                 // Pregunta 1
+                fflush(stdin);
                 printf("%cA qu%c se dedicaba Aracne antes de ser convertida?\n", interrogacion, e);
                 printf("a. Tejedora\n"); // Correcta
                 printf("b. Costurera\n");
                 printf("c. Sastre\n");
-                printf("d. Diseñadora\n");
-
-                // Pregunta 2
-                printf("%cCu%cl es el nombre de la actriz que interpreta a La Viuda Negra en Los Vengadores?\n", interrogacion, a);
-                printf("a. Sof%ca Vergara\n", it);
-                printf("b. Scarlett Johansson\n"); // Correcta
-                printf("c. Elizabeth Olsen\n");
-                printf("d. Natalie Portman\n");
-
-                // Pregunta 3
-                printf("%cC%cmo se llama el miedo a las ara%cas?\n", interrogacion, o, enne);
-                // Aracnofobia
-
-                // Pregunta 4
-                printf("Realiza la clasificaci%cn taxon%cmica de las ara%cas en: reino, filo, clase\n", o, o, enne);
-                printf("a. Animalia - Artr%cpodos - Ar%cnidos\n", o, a); // Correcta
-                printf("b. Ar%cnidos - Moluscos - Animalia\n", a);
-                printf("c. Artr%cpodos - Mam%cferos - Ar%cnidos\n", o, it, a);
-                printf("d. Animalia - Mam%cferos - Ar%cnidos\n", it, a);
-
-                // Pregunta 5
-                printf("%cEn cu%cal reconocida organizaci%cn estuvo trabajando Viuda Negra junto con otros supreh%croes?\n", interrogacion, it, e);
-                printf("a. S.H.I.E.L.D\n"); // Correcta
-                printf("b. S.I.D\n");
-                printf("c. S.I.D.E\n");
-                printf("d. F.I.L.E\n");
-
-                // Pregunta 6
-                printf("Nombre de la escritora que public%c en 2020 de la mano de Disney Libros un libro sobre el famoso personaje Viuda Negra\n", o);
-                printf("a. Cassandra Clare\n");
-                printf("b. Holly Black\n");
-                printf("c. Rick Riordan\n");
-                printf("d. Margaret Stohl\n"); // Correcta
-
-                // Pregunta 7
-                printf("%cCu%ctos ojos tiene una ara%ca?\n", interrogacion, enne);
-                printf("a. 5\n");
-                printf("b. 2\n");
-                printf("c. 4\n");
-                printf("d. 8\n"); // Correcta
-
-                // Pregunta 8
-                printf("%cQu%c personaje no forma parte de Los Vengadores?\n", interrogacion, e);
-                printf("a. Soldado de invierno\n"); // Correcta
-                printf("b. Ojo de Halc%cn\n", o);
-                printf("c. Thor\n");
-                printf("d. Capit%cn Am%crica\n", a, e);
-
-                // Pregunta 9
-                printf("%cEn qu%c pel%ccula de Harry Potter aparecen ara%cas? (Solo dos palabras)\n", interrogacion, it, enne);
-                // Cámara Secreta
-
-                // Pregunta 10
-                printf("%CC%cmo Peter Parker se convirti%c en Spiderman?\n", interrogacion, o, o);
-                printf("a. Por comerse una ara%ca\n", enne);
-                printf("b. Por el mordisco de una ara%ca\n", enne);
-                printf("c. Por tocar una telara%ca\n", enne);
-                printf("d. Al ser maldecido por una bruja\n");
-
-                // Nivel intermedio
-
-                // Pregunta 1
-                printf("%cDe qu%c animal huyen las ara%cas en Harry Potter?\n", interrogacion, e, enne);
-                printf("a. Basilisco\n"); //Correcta
-                printf("b. Iguana\n");
-                printf("c. Lagarto\n");
-                printf("d. Cobra\n");
-
-                // Pregunta 2
-                printf("%cCu%cl es el nombre de pila de La Viuda Negra?\n", interrogacion, a);
-                printf("a. Natasha Romanova\n");
-                printf("b. Natalia Romanoff\n");
-                printf("c. Natalia Romanova\n");
-                printf("d. Natasha Romanoff\n"); //Correcta
-
-                // Pregunta 3
-                printf("%cQu%c color atrae a las ara%cas?\n", interrogacion, e, enne);
-                printf("a. Rojo\n");
-                printf("b. Negro\n");
-                printf("c. Verde\n"); //Correcta
-                printf("d. Blanco\n");
-
-                // Pregunta 4
-                printf("%cCu%cntos a%cos pueden vivir una tar%cntula?\n", interrogacion, a, enne, a);
-                printf("a. 34 a%cos\n", enne);
-                printf("b. 35 a%cos\n", enne);
-                printf("c. 30 a%cos\n", enne); //Correcta
-                printf("d. 29 a%cos\n", enne);
-
-                // Pregunta 5
-                printf("Nombre de la ara%ca que pic%c a Fran Cuesta en 2020?\n", enne, o);
-                printf("a. Tar%cntula\n", a);
-                printf("b. Viuda Negra\n");
-                printf("c. Ara%ca Huntsman\n", enne); //Correcta
-                printf("d. Ara%ca saltarina\n", enne);
-
-                // Pregunta 6
-                printf("%cQu%c tipo de ara%ca pic% a Peter Parker?\n", interrogacion, e, enne, o);
-                printf("a. Ara%ca del Banano\n", enne);
-                printf("b. Ara%ca lobo\n", enne);
-                printf("c. Viuda Negra\n");
-                printf("d. Ara%ca espalda roja\n", enne);
-
-                //Nivel difícil
-
-				// Pregunta 1
-                printf("%cPor qu%c Atenea convirti%c a Aracne?\n", interrogacion, e, o);
-                printf("a. Por desafiarla\n");
-                printf("b. Por perder en una competici%cn contra ella\n",o); //Correcta
-                printf("c. Por proponer un tema inapropiado en la conversaci%cn\n", o);
-                printf("d. Por intentar matar a uno de los hijos de Atenea\n");
-
-                // Pregunta 2
-                printf("%cCu%cntas familias de ara%cas han sido reconocidas?\n", interrogacion, a, enne);
-                printf("a. 221\n");
-                printf("b. 110\n"); //Correcta
-                printf("c. 95\n");
-                printf("d. 257\n");
-
-                // Pregunta 3
-                printf("%cQu%c nombre recibe la instalaci%cn donde la esp%ca sovi%ctica apodada Viuda Negra fue entrenada?\n", interrogacion, e, o, it, e);
-                printf("a. Sala roja\n");
-                printf("b. Habitaci%cn roja\n", o); //Correcta
-                printf("c. Cuarto rojo\n");
-                printf("d. Cuarto negro\n");
-
-                // Pregunta 4
-                printf("%cC%cmo se dice ara%ca en lat%cn?\n", interrogacion, o, enne, it);
-                //aranea
-
-                // Pregunta 5
-                printf("En la pel%ccula de Marvel sobre la Viuda Negra, %cc%cmo se llama la hermana de Natasha Romanoff?\n", it, interrogacion, o);
-                printf("a. Melina Vostokoff\n");
-                printf("b. Yelena Belova\n"); //Correcta
-                printf("c. Alexei Shostakov\n");
-                printf("d. Katia Novikov\n");
-
-                // Pregunta 6
-                printf("Dentro de este programa hemos escondido una ara%ca, %cd%cnde est%c?\n", enne, interrogacion, o, a);
-                //Inicio, arriba, etc
-
-                // Pregunta 7
-                printf("%cCu%cl es la ara%ca m%cs peligrosa del mundo?\n", interrogacion, a, enne, a);
-                printf("a. Ara%ca ba%canera\n", enne, enne);
-                printf("b. Errante del banano\n"); //Correcta
-                printf("c. Errante de seda\n");
-                printf("d. Ara%ca violinista\n", enne);
-
-                // Pregunta 8
-                printf("%cCu%cntas especies de ara%cas existen?\n", interrogacion, a, enne);
-                printf("a. 47957\n");
-                printf("b. 41800\n");
-                printf("c. 46500\n"); //Correcta
-                printf("d. 45500\n");
-
-                //Nivel Muy Difícil
-
-                // Pregunta 1
-                printf("%cEn qu%c se convirti%c Benedict Lightwood?\n", interrogacion, e, o);
-                printf("a. Un gusano\n"); // Correcta
-                printf("b. Una ara%ca\n", enne);
-                printf("c. Un pato\n");
-                printf("d. Un demonio\n");
+                printf("d. Dise%cadora\n", enne);
                 
-                // Pregunta 2
-                printf("%cC%cmo se llaman las ara%cas cuya seda es tan resistente como una armadura? (Libro: Trono de Cristal)\n", interrogacion, o, enne);
-                printf("a. Las ara%cas Stygia\n", enne); // Correcta
-                printf("b. No hay ara%cas\n", enne);
-                printf("c. Las ara%cas Stigya\n", enne);
-                printf("d. Las ara%cas de Stigia\n", enne);
-                
-                // Pregunta 3
-                printf("%cCu%cl de estas no es un arma de Viuda Negra?\n", interrogacion, a);
-                printf("a. Mordida de la viuda\n");
-                printf("b. L%cnea Viuda\n", it);
-                printf("c. La caricia de la viuda\n"); // Correcta
-                printf("d. EL beso de la viuda\n");
-                
-                // Pregunta 4
-                printf("%cC%como se apellida el l%cder de la organizaci%cn sovi%ctica que reclut%c a la despu%cs conocida como Viuda Negra?\n", interrogacion, o, it, o, e, o, e);
-                printf("a. Malakov\n");
-                printf("b. Dreykov\n"); // Correcta
-                printf("c. Davanova\n");
-                printf("d. Petrova\n");
-                
-                // Pregunta 5
-                printf("%cQu%c tipo de ara%ca es Aragog?\n", interrogacion, e, enne);
-                printf("a. Tar%cntula\n", a);
-                printf("b. Acrom%ctula\n", a);  // Correcta
-                printf("c. Tar%cntula Goliat\n", a);
-                printf("d. Bagheera Kiplingi\n");
-                
-                // Pregunta 6
-                printf("%cQu%c le preguntan a Luke Garroway que colecciona despu%cs  de que Clary Fairchild le pusiera la runa sin miedo a Alec Lightwood?\n", interrogacion, e, e);
-                printf("a. %cColeccionas ara%cas?\n", interrogacion, enne);
-                printf("b. %cTienes una ara%ca?\n", interrogacion, enne);
-                printf("c. %cSabes d%cde hay una ara%ca?\n", interrogacion, o, enne);
-                printf("d. No le preguntan nada\n");
-
-
-
-
-
-
-
+                scanf ("%c", &respuesta);
+				
+				Jugador.puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta);
 
             break;
 		}
