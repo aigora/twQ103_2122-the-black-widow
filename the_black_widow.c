@@ -484,6 +484,9 @@ int main() {
                 printf("%d\n", puntuacion);
 
                 //NIVEL MEDIO
+                
+                system("cls");
+				printf ("NIVEL MEDIO\n");
 
                 // Pregunta 11
                 printf("\n");
@@ -557,6 +560,7 @@ int main() {
                 printf("%d\n", puntuacion);
 
                 // Pregunta 16
+                fflush(stdin);
                 printf("¿Qué tipo de araña picó a Peter Parker?\n");
                 printf("a. Araña del Banano\n");
                 printf("b. Araña lobo\n");
@@ -571,7 +575,213 @@ int main() {
 
 
                 //NIVEL DIFÍCIL
+                
+                system("cls");
+				printf ("NIVEL DIFÍCIL\n");
 
+				// Pregunta 17
+				fflush(stdin);
+                printf("¿Por qué Atenea convirtió a Aracne?\n");
+                printf("a. Por desafiarla\n");
+                printf("b. Por perder en una competición contra ella\n"); //Correcta
+                printf("c. Por proponer un tema inapropiado en la conversación\n");
+                printf("d. Por intentar matar a uno de los hijos de Atenea\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelDificil.pregunta1, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 18
+                fflush(stdin);
+                printf("¿Cuántas familias de arañas han sido reconocidas?\n");
+                printf("a. 221\n");
+                printf("b. 110\n"); //Correcta
+                printf("c. 95\n");
+                printf("d. 257\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelDificil.pregunta2, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 19
+                fflush(stdin);
+                printf("¿Qué nombre recibe la instalación donde la espía soviética apodada Viuda Negra fue entrenada?\n");
+                printf("a. Sala roja\n");
+                printf("b. Habitación roja\n"); //Correcta
+                printf("c. Cuarto rojo\n");
+                printf("d. Cuarto negro\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelDificil.pregunta3, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 20
+                fflush(stdin);
+                printf("¿Cómo se dice araña en latín? (Solo una palabra)\n");
+                //aranea
+                gets (respuesta2);
+
+                puntuacion += PreguntasEscritas (NivelDificil.pregunta4, respuesta2);
+                printf ("%d\n", puntuacion);
+                
+                
+                // Pregunta 21
+                fflush(stdin);
+                printf("En la película de Marvel sobre la Viuda Negra, ¿cómo se llama la hermana de Natasha Romanoff?\n");
+                printf("a. Melina Vostokoff\n");
+                printf("b. Yelena Belova\n"); //Correcta
+                printf("c. Alexei Shostakov\n");
+                printf("d. Katia Novikov\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelDificil.pregunta5, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 22
+                fflush(stdin);
+                printf("Dentro de este programa hemos escondido una araña, ¿dónde está? (Solo una palabra aunque puede haber sinónimos)\n");
+                //Inicio, arriba, etc
+                gets (respuesta2);
+
+                puntuacion += PreguntasEscritas (NivelDificil.pregunta6, respuesta2);
+                printf ("%d\n", puntuacion);
+                
+                
+                // Pregunta 23
+                fflush(stdin);
+                printf("¿Cuál es la araña más peligrosa del mundo?\n");
+                printf("a. Araña bañanera\n");
+                printf("b. Errante del banano\n"); //Correcta
+                printf("c. Errante de seda\n");
+                printf("d. Araña violinista\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelDificil.pregunta7, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 24
+                fflush(stdin);
+                printf("¿Cuántas especies de arañas existen?\n");
+                printf("a. 47957\n");
+                printf("b. 41800\n");
+                printf("c. 46500\n"); //Correcta
+                printf("d. 45500\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelDificil.pregunta8, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                //Nivel Muy Difícil
+                
+                system("cls");
+				printf ("NIVEL MUY DIFÍCIL\n");
+
+                // Pregunta 25
+                fflush(stdin);
+                printf("¿En qué se convirtió Benedict Lightwood?\n");
+                printf("a. Un gusano\n"); // Correcta
+                printf("b. Una araña\n");
+                printf("c. Un pato\n");
+                printf("d. Un demonio\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta1, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 26
+                fflush(stdin);
+                printf("¿Cómo se llaman las arañas cuya seda es tan resistente como una armadura? (Libro: Trono de Cristal)\n");
+                printf("a. Las arañas Stygia\n"); // Correcta
+                printf("b. No hay arañas\n");
+                printf("c. Las arañas Stigya\n");
+                printf("d. Las arañas de Stigia\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta2, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 27
+                fflush(stdin);
+                printf("¿Cuál de estas no es un arma de Viuda Negra?\n");
+                printf("a. Mordida de la viuda\n");
+                printf("b. Línea Viuda\n");
+                printf("c. La caricia de la viuda\n"); // Correcta
+                printf("d. EL beso de la viuda\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta3, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 28
+                fflush(stdin);
+                printf("¿Cóomo se apellida el líder de la organización soviética que reclutó a la después conocida como Viuda Negra?\n");
+                printf("a. Malakov\n");
+                printf("b. Dreykov\n"); // Correcta
+                printf("c. Davanova\n");
+                printf("d. Petrova\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta4, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 29
+                fflush(stdin);
+                printf("¿Qué tipo de araña es Aragog?\n");
+                printf("a. Tarántula\n");
+                printf("b. Acromátula\n");  // Correcta
+                printf("c. Tarántula Goliat\n");
+                printf("d. Bagheera Kiplingi\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta5, respuesta1);
+
+                printf("%d\n", puntuacion);
+                
+                
+                // Pregunta 30
+                fflush(stdin);
+                printf("¿Qué le preguntan a Luke Garroway que colecciona después  de que Clary Fairchild le pusiera la runa sin miedo a Alec Lightwood?\n");
+                printf("a. ¿Coleccionas arañas?\n");
+                printf("b. ¿Tienes una araña?\n");
+                printf("c. ¿Sabes dónde hay una araña?\n");
+                printf("d. No le preguntan nada\n");
+                
+                scanf ("%c", &respuesta1);
+
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta6, respuesta1);
+
+                printf("%d\n", puntuacion);
 
 
 
