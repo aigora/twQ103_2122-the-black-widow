@@ -6,7 +6,8 @@
 #define TAM_JUGADORES 2
 #define TAM_MAX 300
 
-//Estructuras con las soluciones a las preguntas
+//ESTRUCTURAS 
+	//Soluciones a las preguntas
 struct TNivelFacil {
 	char pregunta1;
 	char pregunta2;
@@ -50,7 +51,7 @@ struct TNivelMuyDificil {
 };
 
 
-//Estructura con la informacion de los jugadores
+	//Informacion de los jugadores
 struct TJugador{
 	char nombre[50];
 	int puntuacion;
@@ -58,7 +59,7 @@ struct TJugador{
 
 };
 
-//Estructura histórica
+	//Información histórica
 struct THistorica{
 	char nombre[50];
 	int puntuacion;
@@ -66,8 +67,8 @@ struct THistorica{
 
 };
 
-//Función para las respuestas de los jugadores
-
+//FUNCIONES
+	//Función para las respuestas de los jugadores
 int PreguntasTest (char respuesta, char solucion) {
 	int puntuacion=0;
 
@@ -100,7 +101,18 @@ int PreguntasEscritas (char respuesta[], char solucion[]){
 return puntuacion;
 };
 
-//Función para el banner
+	//Función para comprobar si el jugador tiene una puntuación menor de cero
+int ComprobarPuntuacion (int puntuacion) {
+	if (puntuacion < 0) {
+		return 0;
+	}
+	else {
+		return 1;
+	}
+};
+	
+
+	//Función para el banner
 void Banner () {
 	printf ("\n");
 	printf ("                   .            .\n");
@@ -138,7 +150,7 @@ void Banner () {
 	return;
 }
 
-//Función para imprimir la historia inicial
+	//Función para imprimir la historia inicial
 void Historia1 () {
 	printf("Año 4505, el mundo tal y como lo conocíamos ha acabado. El culpable: un virus, conocido\n");
     printf("como la Viuda Negra. No sabemos cómo se originó el virus, ni cómo se transmite. Solo\n");
@@ -166,9 +178,11 @@ void Historia1 () {
 }
 
 
+
+
 int main() {
 
-    //ZONA DE DECLARACIÓN DE VARIABLES
+//ZONA DE DECLARACIÓN DE VARIABLES
 	FILE*pfichero;
 	int opcion,n;
 	char pregunta;
@@ -305,7 +319,8 @@ int main() {
 
                 printf("\n \n");
 
-                //Si queremos hacer lo de q se salga si la puntuación es cero habria que meter un bucle do while
+                //Si queremos hacer lo de q se salga si la puntuación es cero habria que crear una función que comprobase 
+				//despues de cada pregunta si la puntuación es menor que cero y si lo es que se salga
 
                 // NIVEL FÁCIL
 
@@ -319,11 +334,28 @@ int main() {
                 printf("b. Costurera\n");
                 printf("c. Sastre\n");
                 printf("d. Diseñadora\n");
-
                 scanf ("%c", &respuesta1);
 
 				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1);
-
+				//He intentado crear esto para que salga y nos guarde la puntuación, pero me da fallo ns porque
+				if (ComprobarPuntuacion(puntuacion)==0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					i=0;
+					while (fscanf(pfichero, "%s %d %d", &Historicas[i].nombre, &Historicas[i].puntuacion, Historicas[i].ultima_pregunta)!=EOF) {
+						fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+						i++;
+					}
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
+				printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				
 				// Pregunta 2
 				fflush(stdin);
                 printf("¿Cuál es el nombre de la actriz que interpreta a La Viuda Negra en Los Vengadores?\n");
@@ -331,12 +363,15 @@ int main() {
                 printf("b. Scarlett Johansson\n"); // Correcta
                 printf("c. Elizabeth Olsen\n");
                 printf("d. Natalie Portman\n");
-
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1);
-
-                printf ("%d\n", puntuacion);
+				if (ComprobarPuntuacion(puntuacion)==0){
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+        
 
                 // Pregunta 3
                 printf ("\n");
@@ -346,7 +381,13 @@ int main() {
                 gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelFacil.pregunta3, respuesta2);
-                printf ("%d\n", puntuacion);
+                if (ComprobarPuntuacion(puntuacion)==0){
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+                
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
 
                 // Pregunta 4
                 fflush(stdin);
