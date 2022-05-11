@@ -70,7 +70,22 @@ int PreguntasTest (char respuesta, char solucion) {
 		puntuacion -= 1;
 	}
 	
-	printf ("%d\n", puntuacion);
+	
+return puntuacion;
+};
+
+int PreguntasEscritas (char respuesta[], char solucion[]){
+	int comparar, puntuacion=0;
+	
+	comparar = strcmp (respuesta, solucion);
+	if (comparar==0){
+		printf ("Has ganado 5 puntos\n");
+		puntuacion += 5;
+	}
+	else {
+		printf ("Respuesta incorrecta\n");
+		puntuacion -= 1;
+	}
 	
 return puntuacion;
 };
@@ -113,13 +128,45 @@ void Banner () {
 	return;
 }
 
+//Función para imprimir la historia inicial
+void Historia1 () {
+	printf("Año 4505, el mundo tal y como lo conocíamos ha acabado. El culpable: un virus, conocido\n");
+    printf("como la Viuda Negra. No sabemos cómo se originó el virus, ni cómo se transmite. Solo\n");
+    printf("sabemos que se transmite muy rápido y que en sus fases iniciales los infectados presentan una\n");
+    printf("marca que parece una araña, y se va extendiendo en forma de líneas como si de una telaraña se\n");
+	printf("tratase hasta llegar al corazón. Llegado este momento, produce la muerte del contagiado.\n");
+	printf("\n");
+    printf("Al principio los hospitales estaban colapsados, pero ahora simplemente están abandonados,\n");
+    printf("faltos de vida; las tiendas están destrozadas vacías a excepción de los estantes que aun siguen\n");
+    printf("allí, pero desprovistos de suministros.\n");
+    printf("\n");
+    printf("La poca gente que queda sin infectar se comporta de forma extraña, son violentos, ajenos a los\n");
+    printf("demás a excepción de ellos mismos; solitarios. Sin embargo, no todos hemos reaccionado igual\n");
+    printf("ante la crisis, algunos hemos decidido pasar a la acción y buscar una cura, pero no fue tan fácil,\n");
+    printf("de hecho fue imposible. A partir de ahí, nuestra fe en encontrar la cura fue decayendo hasta\n");
+    printf("que el teniente Rogers tuvo la idea de formar un pequeño grupo de selectos soldados al que\n");
+    printf("denominó La Resistencia.\n");
+    printf("\n");
+    printf("Vosotros sois la resistencia.\n");
+    printf("\n");
+    printf("Nuestro principal deber es detener la expansión del virus, pero antes... Tenéis que pasar una prueba.\n");
+    printf("\n");
+    printf("El examen consta de cuatro niveles, elaborados con el fin de medir vuestras capacidades.\n");
+    printf("\n");
+}
 
 
 int main() {
-    FILE*pfichero;
+	
+    //ZONA DE DECLARACIÓN DE VARIABLES
+	FILE*pfichero; 
 	int opcion,n;
 	char pregunta;
-	char respuesta;
+	
+	//Variable para almacenar las respuestas de cada persona
+	char respuesta1, respuesta2[50]; 
+	
+	int puntuacion=0;
 
 	
 	//Nos permite poner tildes
@@ -136,23 +183,20 @@ int main() {
 	struct TNivelFacil NivelFacil = {'a', 'b', "aracnofobia", 'a', 'a', 'd', 'd', 'a', "camara secreta"};
 	struct TNivelMedio NivelMedio = {'a', 'd', 'c', 'c', 'c', 'c'};
 	
-	//Defino variables ligadas a las vocales con tilde
-	char a=160, e=130, it=161, o=162, u=163, aa=181, ee=144 , ii=214 , oo=224 , uu=233;
-	char interrogacion=168;
-	char enne=164;
-	
 	//Varible para comparar cadenas
 	int comparar;
 
 	//Funcion que contiene el banner
 	Banner ();
 
+
+
 	do {
 
-		printf("MEN%c DE OPCIONES\n", uu);
-		printf("Escriba el n%cmero que representa la acci%cn que desea realizar:\n", u, o);
+		printf("MENÚ DE OPCIONES\n");
+		printf("Escriba el número que representa la acción que desea realizar:\n");
     	printf("1. Instrucciones del juego\n");
-    	printf("2. Iniciar  sesi%cn\n", o);
+    	printf("2. Iniciar  sesión\n");
     	printf("3. Ranking de puntuaciones\n");
    		printf("4. Iniciar juego\n");
     	printf("5. Salir\n");
@@ -165,7 +209,7 @@ int main() {
             	system("cls");
                 printf ("\n");
     			printf ("INSTRUCCIONES DE JUEGO\n");
-        		printf("1-Pulse iniciar sesi%cn e introduzca su nombre.\n", o);
+        		printf("1-Pulse iniciar sesi%cn e introduzca su nombre.\n");
         		printf("2-El propio programa le volverá a mostrar el menú, a continuación pulse iniciar juego y disfrute de este.\n");
 				printf ("\n");
 				printf ("\n");
@@ -205,7 +249,7 @@ int main() {
 	
 				printf ("Bienvenido al juego, jugador\n");
 				printf ("(Usa una voz de villano de Disney)\n");
-				printf ("En breves te adentraras en esta terror%cfica experiencia a solas\n", it);
+				printf ("En breves te adentraras en esta terrorífica experiencia a solas\n");
 				printf("\n");
 
             break;
@@ -228,33 +272,14 @@ int main() {
             break;
 
             case 4:
+            	//Hay que meter un mensaje que indique que si la persona no ha iniaciado sesión se salga 
+            	//Se me ha ocurrido que podemos inicializar el nombre del jugador como un asterisco y si el nombre al llegar aquí sigue siendo * entonces meto un break
+            	
                 system("cls");
-                printf("A%co 4505, el mundo tal y como lo conoc%camos ha acabado. El culpable: un virus, conocido\n", enne, it);
-                printf("como la Viuda Negra. No sabemos c%cmo se origin%c el virus, ni c%cmo se transmite. S%clo\n", o, o, o, o);
-                printf("sabemos que se transmite muy r%cpido y que en sus fases iniciales los infectados presentan una\n", a);
-                printf("marca que parece una ara%ca, y se va extendiendo en forma de l%cneas como si de una telara%ca se\n", enne, it, enne);
-                printf("tratase hasta llegar al coraz%cn. Llegado este momento, produce la muerte del contagiado.\n", o);
-                printf("\n");
-                printf("Al principio los hospitales estaban colapsados, pero ahora simplemente est%cn abandonados,\n", a);
-                printf("faltos de vida; las tiendas est%cn destrozadas vac%cas a excepci%cn de los estantes que aun siguen\n", a, it, o);
-                printf("all%c, pero desprovistos de suministros.\n", it);
-                printf("\n");
-                printf("La poca gente que queda sin infectar se comporta de forma extraña, son violentos, ajenos a los\n");
-                printf("dem%cs a excepci%cn de ellos mismos; solitarios. Sin embargo, no todos hemos reaccionado igual\n", a, o);
-                printf("ante la crisis, algunos hemos decidido pasar a la acci%cn y buscar una cura, pero no fue tan f%ccil,\n", o, a);
-                printf("de hecho fue imposible. A partir de ah%c, nuestra fe en encontrar la cura fue decayendo hasta\n", it);
-                printf("que el teniente Rogers tuvo la idea de formar un peque%co grupo de selectos soldados al que\n", enne);
-                printf("denomin%c La Resistencia.\n", o);
-                printf("\n");
-                printf("Vosotros sois la resistencia.\n");
-                printf("\n");
-                printf("Nuestro principal deber es detener la expansi%cn del virus, pero antes... Ten%cis que pasar una prueba.\n", o, e);
-                printf("\n");
-                printf("El examen consta de cuatro niveles, elaborados con el fin de medir vuestras capacidades.\n");
-                printf("\n");
+                Historia1();
 
                 fflush(stdin);
-                printf("%cEst%cs seguro de querer adentrarte? Responde si (s) o no (n):\n", interrogacion, a);
+                printf("¿Estás seguro de querer adentrarte? Responde si (s) o no (n):\n");
                 scanf("%c", &pregunta);
                 if (pregunta == 'n') {
                     break;
@@ -267,24 +292,62 @@ int main() {
                 printf("1\n");
 
                 printf("\n \n");
+                
+                //Si queremos hacer lo de q se salga si la puntuación es cero habria que meter un bucle do while
 
                 // NIVEL FÁCIL
 
 				system("cls");
-				printf ("NIVEL F%cCIL\n", aa);
+				printf ("NIVEL FÁCIL\n");
 				
                 // Pregunta 1
                 fflush(stdin);
-                printf("%cA qu%c se dedicaba Aracne antes de ser convertida?\n", interrogacion, e);
+                printf("¿A qué se dedicaba Aracne antes de ser convertida?\n");
                 printf("a. Tejedora\n"); // Correcta
                 printf("b. Costurera\n");
                 printf("c. Sastre\n");
-                printf("d. Dise%cadora\n", enne);
+                printf("d. Diseñadora\n");
                 
-                scanf ("%c", &respuesta);
+                scanf ("%c", &respuesta1);
 				
-				Jugador.puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta);
-
+				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1);
+				
+				// Pregunta 2
+				fflush(stdin);
+                printf("¿Cuál es el nombre de la actriz que interpreta a La Viuda Negra en Los Vengadores?\n");
+                printf("a. Sofía Vergara\n");
+                printf("b. Scarlett Johansson\n"); // Correcta
+                printf("c. Elizabeth Olsen\n");
+                printf("d. Natalie Portman\n");
+                
+                scanf ("%c", &respuesta1);
+                
+                puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1);
+                
+                printf ("%d\n", puntuacion);
+                
+                // Pregunta 3
+                printf ("\n");
+                fflush(stdin);
+                printf("¿Cómo se llama el miedo a las arañas? (Introduca una única palabra en minúsculas y sin acentos)\n");
+                // Aracnofobia
+                gets (respuesta2);
+                
+                puntuacion += PreguntasEscritas (NivelFacil.pregunta3, respuesta2);
+                printf ("%d\n", puntuacion);
+                
+                // Pregunta 4
+                printf("Realiza la clasificación taxonómica de las arañas en: reino, filo, clase\n");
+                printf("a. Animalia - Artrópodos - Aránidos\n"); // Correcta
+                printf("b. Aránidos - Moluscos - Animalia\n");
+                printf("c. Artrópodos - Mamíferos - Aránidos\n");
+                printf("d. Animalia - Mamíferos - Aránidos\n");
+                
+                scanf ("%c", &respuesta1);
+                
+                puntuacion += PreguntasTest (NivelFacil.pregunta4, respuesta1);
+				
+				
             break;
 		}
 	}
