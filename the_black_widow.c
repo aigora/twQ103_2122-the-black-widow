@@ -8,7 +8,7 @@
 
 //ESTRUCTURAS 
 	//Soluciones a las preguntas
-struct TNivelFacil {
+struct TNivelFacil { //Nivel 1
 	char pregunta1;
 	char pregunta2;
 	char pregunta3 [30];
@@ -21,7 +21,7 @@ struct TNivelFacil {
 	char pregunta10;
 };
 
-struct TNivelMedio {
+struct TNivelMedio { //Nivel 2
 	char pregunta1;
 	char pregunta2;
 	char pregunta3;
@@ -30,7 +30,7 @@ struct TNivelMedio {
 	char pregunta6;
 };
 
-struct TNivelDificil {
+struct TNivelDificil { //Nivel 3
 	char pregunta1;
 	char pregunta2;
 	char pregunta3;
@@ -41,7 +41,7 @@ struct TNivelDificil {
 	char pregunta8;
 };
 
-struct TNivelMuyDificil {
+struct TNivelMuyDificil { //Nivel 4
     char pregunta1;
     char pregunta2;
     char pregunta3;
@@ -69,24 +69,58 @@ struct THistorica{
 
 //FUNCIONES
 	//Función para las respuestas de los jugadores
-int PreguntasTest (char respuesta, char solucion) {
-	int puntuacion=0;
-
+int PreguntasTest (char respuesta, char solucion, int nivel) {
+	int puntuacion=0, bien, mal;
+	
+	if (nivel == 1){
+		bien = 5;
+		mal = 1;
+	} 
+	else if (nivel == 2){
+		bien = 7;
+		mal = 3;
+	}
+	else if (nivel == 3) {
+		bien = 10;
+		mal = 5;
+	}
+	else {
+		bien = 15;
+		mal = 10;
+	}
+	
 	if (respuesta==solucion) {
 		printf ("Has ganado 5 puntos\n");
-		puntuacion += 5;
+		puntuacion += bien;
 	}
 	else {
 		printf ("Respuesta incorrecta\n");
-		puntuacion -= 1;
+		puntuacion -= mal;
 	}
 
 
 return puntuacion;
 };
 
-int PreguntasEscritas (char respuesta[], char solucion[]){
-	int comparar, puntuacion=0;
+int PreguntasEscritas (char respuesta[], char solucion[], int nivel){
+	int comparar, puntuacion=0, bien, mal;
+
+	if (nivel == 1){
+		bien = 5;
+		mal = 1;
+	} 
+	else if  (nivel == 2){
+		bien = 7;
+		mal = 3;
+	}
+	else if  (nivel == 3) {
+		bien = 10;
+		mal = 5;
+	}
+	else {
+		bien = 15;
+		mal = 10;
+	}
 
 	comparar = strcmp (respuesta, solucion);
 	if (comparar==0){
@@ -336,7 +370,9 @@ int main() {
                 printf("d. Diseñadora\n");
                 scanf ("%c", &respuesta1);
 
-				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1);
+				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1, 1);
+				
+				/*
 				//He intentado crear esto para que salga y nos guarde la puntuación, pero me da fallo ns porque
 				if (ComprobarPuntuacion(puntuacion)==0){
 					Jugador.ultima_pregunta = 1;
@@ -353,6 +389,7 @@ int main() {
 					printf ("\n\n");
 					break;
 				}
+				*/
 				
 				printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
 				
@@ -365,7 +402,7 @@ int main() {
                 printf("d. Natalie Portman\n");
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1);
+                puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1, 1);
 				if (ComprobarPuntuacion(puntuacion)==0){
 					printf ("G A M E    O V E R");
 					printf ("\n\n");
@@ -380,7 +417,7 @@ int main() {
                 // Aracnofobia
                 gets (respuesta2);
 
-                puntuacion += PreguntasEscritas (NivelFacil.pregunta3, respuesta2);
+                puntuacion += PreguntasEscritas (NivelFacil.pregunta3, respuesta2, 1);
                 if (ComprobarPuntuacion(puntuacion)==0){
 					printf ("G A M E    O V E R");
 					printf ("\n\n");
@@ -399,7 +436,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest (NivelFacil.pregunta4, respuesta1);
+                puntuacion += PreguntasTest (NivelFacil.pregunta4, respuesta1, 1);
 
                 printf("%d\n", puntuacion);
 
@@ -413,7 +450,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest (NivelFacil.pregunta5, respuesta1);
+                puntuacion += PreguntasTest (NivelFacil.pregunta5, respuesta1, 1);
 
                 printf("%d\n", puntuacion);
 
@@ -427,7 +464,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelFacil.pregunta6, respuesta1);
+                puntuacion += PreguntasTest(NivelFacil.pregunta6, respuesta1, 1);
 
                 printf("%d\n", puntuacion);
 
@@ -441,7 +478,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelFacil.pregunta7, respuesta1);
+                puntuacion += PreguntasTest(NivelFacil.pregunta7, respuesta1, 1);
 
                 printf("%d\n", puntuacion);
 
@@ -455,7 +492,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelFacil.pregunta8, respuesta1);
+                puntuacion += PreguntasTest(NivelFacil.pregunta8, respuesta1, 1);
 
                 printf("%d\n", puntuacion);
 
@@ -466,7 +503,7 @@ int main() {
                 // Cámara Secreta
                 gets (respuesta2);
 
-                puntuacion += PreguntasEscritas (NivelFacil.pregunta9, respuesta2);
+                puntuacion += PreguntasEscritas (NivelFacil.pregunta9, respuesta2, 1);
                 printf ("%d\n", puntuacion);
 
                 // Pregunta 10
@@ -479,7 +516,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelFacil.pregunta10, respuesta1);
+                puntuacion += PreguntasTest(NivelFacil.pregunta10, respuesta1, 1);
 
                 printf("%d\n", puntuacion);
 
@@ -499,7 +536,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMedio.pregunta1, respuesta1);
+                puntuacion += PreguntasTest(NivelMedio.pregunta1, respuesta1, 2);
 
                 printf("%d\n", puntuacion);
 
@@ -513,7 +550,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMedio.pregunta2, respuesta1);
+                puntuacion += PreguntasTest(NivelMedio.pregunta2, respuesta1, 2);
 
                 printf("%d\n", puntuacion);
 
@@ -527,7 +564,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMedio.pregunta3, respuesta1);
+                puntuacion += PreguntasTest(NivelMedio.pregunta3, respuesta1, 2);
 
                 printf("%d\n", puntuacion);
 
@@ -541,7 +578,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMedio.pregunta4, respuesta1);
+                puntuacion += PreguntasTest(NivelMedio.pregunta4, respuesta1, 2);
 
                 printf("%d\n", puntuacion);
 
@@ -555,7 +592,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMedio.pregunta5, respuesta1);
+                puntuacion += PreguntasTest(NivelMedio.pregunta5, respuesta1, 2);
 
                 printf("%d\n", puntuacion);
 
@@ -569,7 +606,7 @@ int main() {
 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMedio.pregunta6, respuesta1);
+                puntuacion += PreguntasTest(NivelMedio.pregunta6, respuesta1, 2);
 
                 printf("%d\n", puntuacion);
 
@@ -589,7 +626,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelDificil.pregunta1, respuesta1);
+                puntuacion += PreguntasTest(NivelDificil.pregunta1, respuesta1, 3);
 
                 printf("%d\n", puntuacion);
                 
@@ -604,7 +641,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelDificil.pregunta2, respuesta1);
+                puntuacion += PreguntasTest(NivelDificil.pregunta2, respuesta1, 3);
 
                 printf("%d\n", puntuacion);
                 
@@ -619,7 +656,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelDificil.pregunta3, respuesta1);
+                puntuacion += PreguntasTest(NivelDificil.pregunta3, respuesta1, 3);
 
                 printf("%d\n", puntuacion);
                 
@@ -630,7 +667,7 @@ int main() {
                 //aranea
                 gets (respuesta2);
 
-                puntuacion += PreguntasEscritas (NivelDificil.pregunta4, respuesta2);
+                puntuacion += PreguntasEscritas (NivelDificil.pregunta4, respuesta2, 3);
                 printf ("%d\n", puntuacion);
                 
                 
@@ -644,7 +681,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelDificil.pregunta5, respuesta1);
+                puntuacion += PreguntasTest(NivelDificil.pregunta5, respuesta1, 3);
 
                 printf("%d\n", puntuacion);
                 
@@ -655,7 +692,7 @@ int main() {
                 //Inicio, arriba, etc
                 gets (respuesta2);
 
-                puntuacion += PreguntasEscritas (NivelDificil.pregunta6, respuesta2);
+                puntuacion += PreguntasEscritas (NivelDificil.pregunta6, respuesta2, 3);
                 printf ("%d\n", puntuacion);
                 
                 
@@ -669,7 +706,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelDificil.pregunta7, respuesta1);
+                puntuacion += PreguntasTest(NivelDificil.pregunta7, respuesta1, 3);
 
                 printf("%d\n", puntuacion);
                 
@@ -684,7 +721,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelDificil.pregunta8, respuesta1);
+                puntuacion += PreguntasTest(NivelDificil.pregunta8, respuesta1, 3);
 
                 printf("%d\n", puntuacion);
                 
@@ -704,7 +741,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMuyDificil.pregunta1, respuesta1);
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta1, respuesta1, 4);
 
                 printf("%d\n", puntuacion);
                 
@@ -719,7 +756,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMuyDificil.pregunta2, respuesta1);
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta2, respuesta1, 4);
 
                 printf("%d\n", puntuacion);
                 
@@ -734,7 +771,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMuyDificil.pregunta3, respuesta1);
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta3, respuesta1, 4);
 
                 printf("%d\n", puntuacion);
                 
@@ -749,7 +786,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMuyDificil.pregunta4, respuesta1);
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta4, respuesta1, 4);
 
                 printf("%d\n", puntuacion);
                 
@@ -764,7 +801,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMuyDificil.pregunta5, respuesta1);
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta5, respuesta1, 4);
 
                 printf("%d\n", puntuacion);
                 
@@ -779,7 +816,7 @@ int main() {
                 
                 scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelMuyDificil.pregunta6, respuesta1);
+                puntuacion += PreguntasTest(NivelMuyDificil.pregunta6, respuesta1, 4);
 
                 printf("%d\n", puntuacion);
 
