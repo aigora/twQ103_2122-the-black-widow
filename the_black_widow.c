@@ -520,6 +520,8 @@ int main() {
 
                 printf("%d\n", puntuacion);
 
+				//Habria que meter un mensaje antes del cambio de nivel o algo 
+
                 //NIVEL MEDIO
                 
                 system("cls");
