@@ -134,18 +134,7 @@ int PreguntasEscritas (char respuesta[], char solucion[], int nivel){
 
 return puntuacion;
 };
-
-	//Función para comprobar si el jugador tiene una puntuación menor de cero
-int ComprobarPuntuacion (int puntuacion) {
-	if (puntuacion < 0) {
-		return 0;
-	}
-	else {
-		return 1;
-	}
-};
 	
-
 	//Función para el banner
 void Banner () {
 	printf ("\n");
@@ -220,6 +209,9 @@ int main() {
 	FILE*pfichero;
 	int opcion,n;
 	char pregunta;
+	
+	//Variable encargada de contar el numero de filas en el archivo donde se almacenan los datos históricos
+	int contador=0;
 
 	//Variable para almacenar las respuestas de cada persona
 	char respuesta1, respuesta2[50];
@@ -271,8 +263,7 @@ int main() {
     			printf ("INSTRUCCIONES DE JUEGO\n");
         		printf("1-Pulse iniciar sesión e introduzca su nombre.\n");
         		printf("2-El propio programa le volverá a mostrar el menú, a continuación pulse iniciar juego y disfrute de este.\n");
-				printf ("\n");
-				printf ("\n");
+				printf ("\n\n");
         	break;
 
             case 2:
@@ -299,6 +290,7 @@ int main() {
 						Jugador.puntuacion=0;
 						Jugador.ultima_pregunta=0;
 					}
+					contador++;
 					i++;
 				}
 
@@ -328,13 +320,11 @@ int main() {
                     i++;
                 }
                 printf("\n");
+                fclose (pfichero);
 
             break;
 
             case 4:
-            	//Hay que meter un mensaje que indique que si la persona no ha iniaciado sesión se salga
-            	//Se me ha ocurrido que podemos inicializar el nombre del jugador como un asterisco y si el nombre al llegar aquí sigue siendo * entonces meto un break
-
                 system("cls");
                 Historia1();
 
@@ -351,15 +341,13 @@ int main() {
                 printf("2\n");
                 printf("1\n");
 
-                printf("\n \n");
-
-                //Si queremos hacer lo de q se salga si la puntuación es cero habria que crear una función que comprobase 
-				//despues de cada pregunta si la puntuación es menor que cero y si lo es que se salga
+                printf("\n\n");
 
                 // NIVEL FÁCIL
 
 				system("cls");
 				printf ("NIVEL FÁCIL\n");
+				printf ("\n\n");
 
                 // Pregunta 1
                 fflush(stdin);
@@ -371,27 +359,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
 				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1, 1);
+				printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 				
-				/*
-				//He intentado crear esto para que salga y nos guarde la puntuación, pero me da fallo ns porque
-				if (ComprobarPuntuacion(puntuacion)==0){
+				if (puntuacion<=0){
 					Jugador.ultima_pregunta = 1;
 					
 					pfichero = fopen ("puntuaciones.txt", "w");
-					i=0;
-					while (fscanf(pfichero, "%s %d %d", &Historicas[i].nombre, &Historicas[i].puntuacion, Historicas[i].ultima_pregunta)!=EOF) {
-						fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
-						i++;
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
 					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
 					fclose (pfichero);
 					
 					printf ("G A M E    O V E R");
 					printf ("\n\n");
 					break;
 				}
-				*/
 				
-				printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
 				
 				// Pregunta 2
 				fflush(stdin);
@@ -403,12 +388,9 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1, 1);
-				if (ComprobarPuntuacion(puntuacion)==0){
-					printf ("G A M E    O V E R");
-					printf ("\n\n");
-					break;
-				}
-        
+        		printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
+				
 
                 // Pregunta 3
                 printf ("\n");
@@ -418,13 +400,9 @@ int main() {
                 gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelFacil.pregunta3, respuesta2, 1);
-                if (ComprobarPuntuacion(puntuacion)==0){
-					printf ("G A M E    O V E R");
-					printf ("\n\n");
-					break;
-				}
-                
                 printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
+				
 
                 // Pregunta 4
                 fflush(stdin);
@@ -437,8 +415,9 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta4, respuesta1, 1);
-
-                printf("%d\n", puntuacion);
+				printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
+               
 
                 // Pregunta 5
                 fflush(stdin);
@@ -451,11 +430,12 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta5, respuesta1, 1);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
 
-                 // Pregunta 6
-                 fflush(stdin);
+               // Pregunta 6
+                fflush(stdin);
                 printf("Nombre de la escritora que publicó en 2020 de la mano de Disney Libros un libro sobre el famoso personaje Viuda Negra\n");
                 printf("a. Cassandra Clare\n");
                 printf("b. Holly Black\n");
@@ -465,8 +445,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta6, respuesta1, 1);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+
 
                 // Pregunta 7
                 fflush(stdin);
@@ -479,8 +475,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta7, respuesta1, 1);
+				printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
 
                 // Pregunta 8
                 fflush(stdin);
@@ -493,8 +504,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta8, respuesta1, 1);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+
 
                 // Pregunta 9
                 printf("\n");
@@ -504,7 +531,24 @@ int main() {
                 gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelFacil.pregunta9, respuesta2, 1);
-                printf ("%d\n", puntuacion);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
+
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
 
                 // Pregunta 10
                 fflush(stdin);
@@ -517,15 +561,30 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta10, respuesta1, 1);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
 
-				//Habria que meter un mensaje antes del cambio de nivel o algo 
 
                 //NIVEL MEDIO
                 
                 system("cls");
 				printf ("NIVEL MEDIO\n");
+				printf ("\n\n");
 
                 // Pregunta 11
                 printf("\n");
@@ -539,8 +598,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta1, respuesta1, 2);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
 
                 // Pregunta 12
                 fflush(stdin);
@@ -553,8 +628,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta2, respuesta1, 2);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
 
                 // Pregunta 13
                 fflush(stdin);
@@ -567,8 +658,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta3, respuesta1, 2);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
 
                 // Pregunta 14
                 fflush(stdin);
@@ -581,8 +688,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta4, respuesta1, 2);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
 
                 // Pregunta 15
                 fflush(stdin);
@@ -595,8 +718,24 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta5, respuesta1, 2);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
+				
 
                 // Pregunta 16
                 fflush(stdin);
@@ -609,14 +748,30 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta6, respuesta1, 2);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
 
 
                 //NIVEL DIFÍCIL
                 
                 system("cls");
 				printf ("NIVEL DIFÍCIL\n");
+				printf ("\n\n");
 
 				// Pregunta 17
 				fflush(stdin);
@@ -629,8 +784,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta1, respuesta1, 3);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 18
@@ -644,8 +814,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta2, respuesta1, 3);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 19
@@ -659,8 +844,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta3, respuesta1, 3);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 20
@@ -670,7 +870,23 @@ int main() {
                 gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelDificil.pregunta4, respuesta2, 3);
-                printf ("%d\n", puntuacion);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
+
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 21
@@ -684,8 +900,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta5, respuesta1, 3);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 22
@@ -695,7 +926,23 @@ int main() {
                 gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelDificil.pregunta6, respuesta2, 3);
-                printf ("%d\n", puntuacion);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
+
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 23
@@ -709,8 +956,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta7, respuesta1, 3);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 24
@@ -724,14 +986,30 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta8, respuesta1, 3);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
-                //Nivel Muy Difícil
+                //NIVEL MUY DIFÍCIL
                 
                 system("cls");
 				printf ("NIVEL MUY DIFÍCIL\n");
+				printf ("\n\n");
 
                 // Pregunta 25
                 fflush(stdin);
@@ -744,8 +1022,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta1, respuesta1, 4);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 26
@@ -759,8 +1052,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta2, respuesta1, 4);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 27
@@ -774,8 +1082,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta3, respuesta1, 4);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 28
@@ -789,8 +1112,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta4, respuesta1, 4);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 29
@@ -804,8 +1142,23 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta5, respuesta1, 4);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
                 
                 
                 // Pregunta 30
@@ -819,10 +1172,32 @@ int main() {
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta6, respuesta1, 4);
+                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+				printf ("\n\n");
 
-                printf("%d\n", puntuacion);
+                if (puntuacion<=0){
+					Jugador.ultima_pregunta = 1;
+					
+					pfichero = fopen ("puntuaciones.txt", "w");
+					for (i=0;i<contador;i++){
+						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
+					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					fclose (pfichero);
+					
+					printf ("G A M E    O V E R");
+					printf ("\n\n");
+					break;
+				}
 
-
+				Jugador.ultima_pregunta = 1;
+					
+				pfichero = fopen ("puntuaciones.txt", "w");
+				for (i=0;i<contador;i++){
+					fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+				}
+				fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+				fclose (pfichero);
 
 
             break;
