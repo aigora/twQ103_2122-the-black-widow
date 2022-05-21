@@ -158,21 +158,24 @@ int salida(struct THistorica Historicas[], struct TJugador Jugador){
 	int i,puntuacion;
 
 	if (puntuacion<=0){
-		Jugador.puntuacion=0;
+        Jugador.puntuacion=0;
 
-		pfichero = fopen ("puntuaciones.txt", "w");
-		for (i=0;i<TAM_MAX;i++){
-			fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
-		}
-		fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
-		fclose (pfichero);
+        pfichero = fopen ("puntuaciones.txt", "w");
+        for (i=0;i<TAM_MAX;i++){
+            fprintf (pfichero, "%s %d %d", Historicas[i].nombre, &Historicas[i].puntuacion, &Historicas[i].ultima_pregunta);
+        }
+        fprintf (pfichero, "%s %d %d", Jugador.nombre, &Jugador.puntuacion, &Jugador.ultima_pregunta);
+        fclose (pfichero);
 
 		printf ("\n\n");
 		printf ("G A M E    O V E R");
 		printf ("\n\n");
 		return 1;
 	}
-	return 0;
+
+    return 0;
+
+
 }
 
 	//Función para el banner
@@ -223,7 +226,7 @@ int Historia(){
        printf("Error en la apertura del fichero\n");
        return -1;
     }
-    
+
     char c;
 
     while(((c = fgetc(phistoria))) != EOF) {
@@ -389,7 +392,7 @@ int main() {
 
 				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1, 1);
 				if(salida(Historicas, Jugador)==1){
-					break;
+                    break;
 				}
 
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
