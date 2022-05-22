@@ -84,7 +84,7 @@ int PreguntasTest (char respuesta, char solucion, int nivel) {
 	switch (nivel) {
 		case 1:
 			bien = 5;
-			mal = 1;
+			mal = 5;
 		break;
 
 		case 2:
@@ -152,19 +152,21 @@ return puntuacion;
 };
 
     //Función salir del juego
-int salida(struct THistorica Historicas[], struct TJugador Jugador){
+int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugador, int puntuacion, int pregunta){
 
 	FILE * pfichero;
-	int i,puntuacion;
+	int i;
 
 	if (puntuacion<=0){
         Jugador.puntuacion=0;
+        Jugador.ultima_pregunta=pregunta;
 
         pfichero = fopen ("puntuaciones.txt", "w");
-        for (i=0;i<TAM_MAX;i++){
-            fprintf (pfichero, "%s %d %d", Historicas[i].nombre, &Historicas[i].puntuacion, &Historicas[i].ultima_pregunta);
+        
+        for (i=0;i<dimension;i++){
+            fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
         }
-        fprintf (pfichero, "%s %d %d", Jugador.nombre, &Jugador.puntuacion, &Jugador.ultima_pregunta);
+        fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
         fclose (pfichero);
 
 		printf ("\n\n");
@@ -174,8 +176,6 @@ int salida(struct THistorica Historicas[], struct TJugador Jugador){
 	}
 
     return 0;
-
-
 }
 
 	//Función para el banner
@@ -254,7 +254,7 @@ int main() {
 	int puntuacion=0;
 
 
-	//Nos permite poner tildes
+	//Nos permite poner tildes 
 	setlocale (LC_CTYPE,"spanish");
 
 	//Variables para bucles
@@ -316,7 +316,7 @@ int main() {
 				i=0;
 				while (fscanf (pfichero, "%s %d %d", Historicas[i].nombre, &Historicas[i].puntuacion, &Historicas[i].ultima_pregunta) != EOF){
 					comparar = strcmp (Jugador.nombre, Historicas[i].nombre);
-                    printf("%s tienes una puntuación inicial de %d y pregunta %d\n", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+
 					if (comparar==0) {
 						Jugador.puntuacion=Historicas[i].puntuacion;
 						Jugador.ultima_pregunta=Historicas[i].ultima_pregunta;
@@ -324,6 +324,9 @@ int main() {
 					}
 					contador++;
 					i++;
+				}
+				if (comparar == 0){
+					printf("%s tienes una puntuación inicial de %d y tu última pregunta fue la %d\n", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
 				}
 
 				fclose (pfichero);
@@ -375,6 +378,8 @@ int main() {
 
                 printf("\n\n");
 
+
+
                 // NIVEL FÁCIL
 
 				system("cls");
@@ -388,17 +393,17 @@ int main() {
                 printf("	b. Costurera\n");
                 printf("	c. Sastre\n");
                 printf("	d. Diseñadora\n");
+                
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
 				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1, 1);
-				if(salida(Historicas, Jugador)==1){
+				if(salida(Historicas, contador, Jugador, puntuacion, 1)==1){
                     break;
 				}
-
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-
-
 
 
 				// Pregunta 2
@@ -408,41 +413,32 @@ int main() {
                 printf("	b. Scarlett Johansson\n"); // Correcta
                 printf("	c. Elizabeth Olsen\n");
                 printf("	d. Natalie Portman\n");
+                
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1, 1);
-                /*if (puntuacion<=0){
-					Jugador.ultima_pregunta = 2;
-					Jugador.puntuacion=0;
-
-					pfichero = fopen ("puntuaciones.txt", "w");
-					for (i=0;i<contador;i++){
-						fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
-					}
-					fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
-					fclose (pfichero);
-
-					printf ("\n\n");
-					printf ("G A M E    O V E R");
-					printf ("\n\n");
-					break;
-				}*/
-				if(salida(Historicas, Jugador)==1){
+               
+				if(salida(Historicas, contador, Jugador, puntuacion, 2)==1){
 					break;
 				}
         		printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-
-
-                // Pregunta 3
+				
+				
+				// Pregunta 3
                 printf ("\n");
                 fflush(stdin);
                 printf("  3. ¿Cómo se llama el miedo a las arañas? (Introduca una única palabra en minúsculas y sin acentos)\n");
                 // Aracnofobia
+                
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelFacil.pregunta3, respuesta2, 1);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 3)==1){
 					break;
 				}
 				fflush(stdin);
@@ -458,10 +454,12 @@ int main() {
                 printf("	c. Artrópodos - Mamíferos - Aránidos\n");
                 printf("	d. Animalia - Mamíferos - Aránidos\n");
 
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta4, respuesta1, 1);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 4)==1){
 					break;
 				}
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -476,10 +474,12 @@ int main() {
                 printf("	c. S.I.D.E\n");
                 printf("	d. F.I.L.E\n");
 
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta5, respuesta1, 1);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 5)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -494,10 +494,12 @@ int main() {
                 printf("	c. Rick Riordan\n");
                 printf("	d. Margaret Stohl\n"); // Correcta
 
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta6, respuesta1, 1);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 6)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -511,11 +513,13 @@ int main() {
                 printf("	b. 2\n");
                 printf("	c. 4\n");
                 printf("	d. 8\n"); // Correcta
-
+				
+				printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta7, respuesta1, 1);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 7)==1){
 					break;
 				}
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -530,10 +534,12 @@ int main() {
                 printf("	c. Thor\n");
                 printf("	d. Capitán América\n");
 
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelFacil.pregunta8, respuesta1, 1);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 8)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -545,10 +551,13 @@ int main() {
                 fflush(stdin);
                 printf("  9. ¿En qué película de Harry Potter aparecen arañas? (Solo dos palabras)\n");
                 // Cámara Secreta
+                
+                printf ("\n");
+				printf ("	RESPUESTA: ");
                 gets (	  respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelFacil.pregunta9, respuesta2, 1);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 9)==1){
 					break;
 				}
                 printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -563,17 +572,20 @@ int main() {
                 printf("	c. Por tocar una telaraña\n");
                 printf("	d. Al ser maldecido por una bruja\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
-                puntuacion += PreguntasTest(NivelFacil.pregunta10, respuesta1, 1);
-                if(salida(Historicas, Jugador)==1){
+                puntuacion += PreguntasTest(NivelFacil.pregunta10, respuesta1, 10);
+                if(salida(Historicas, contador, Jugador, puntuacion, 10)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-
-
-                //NIVEL MEDIO
+				
+				
+				
+				//NIVEL MEDIO
 
                 system("cls");
 				printf ("	NIVEL MEDIO\n");
@@ -588,10 +600,12 @@ int main() {
                 printf("	c. Lagarto\n");
                 printf("	d. Cobra\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta1, respuesta1, 2);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 11)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -606,10 +620,12 @@ int main() {
                 printf("	c. Natalia Romanova\n");
                 printf("	d. Natasha Romanoff\n"); //Correcta
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta2, respuesta1, 2);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 12)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -624,10 +640,12 @@ int main() {
                 printf("	c. Verde\n"); //Correcta
                 printf("	d. Blanco\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta3, respuesta1, 2);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 13)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -642,10 +660,12 @@ int main() {
                 printf("	c. 30 años\n"); //Correcta
                 printf("	d. 29 años\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta4, respuesta1, 2);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 14)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -660,10 +680,12 @@ int main() {
                 printf("	c. Araña Huntsman\n"); //Correcta
                 printf("	d. Araña saltarina\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta5, respuesta1, 2);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 15)==1){
 					break;
 				}
                 printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -678,21 +700,25 @@ int main() {
                 printf("	c. Viuda Negra\n"); //Correcta
                 printf("	d. Araña espalda roja\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMedio.pregunta6, respuesta1, 2);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 16)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-
-
-                //NIVEL DIFÍCIL
+				
+				
+				
+				//NIVEL DIFÍCIL
 
                 system("cls");
 				printf ("  NIVEL DIFÍCIL\n");
 				printf ("\n\n");
+
 
 				// Pregunta 17
 				fflush(stdin);
@@ -702,10 +728,12 @@ int main() {
                 printf("	c. Por proponer un tema inapropiado en la conversación\n");
                 printf("	d. Por intentar matar a uno de los hijos de Atenea\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta1, respuesta1, 3);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 17)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -720,10 +748,12 @@ int main() {
                 printf("	c. 95\n");
                 printf("	d. 257\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta2, respuesta1, 3);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 18)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -738,10 +768,12 @@ int main() {
                 printf("	c. Cuarto rojo\n");
                 printf("	d. Cuarto negro\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta3, respuesta1, 3);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 19)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -752,10 +784,13 @@ int main() {
                 fflush(stdin);
                 printf("  20. ¿Cómo se dice araña en latín? (Solo una palabra)\n");
                 //aranea
-                gets (	   respuesta2);
+                
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+				gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelDificil.pregunta4, respuesta2, 3);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 20)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -770,10 +805,12 @@ int main() {
                 printf("	c. Alexei Shostakov\n");
                 printf("	d. Katia Novikov\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta5, respuesta1, 3);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 21)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -784,10 +821,13 @@ int main() {
                 fflush(stdin);
                 printf("  22. Dentro de este programa hemos escondido una araña, ¿dónde está? (Solo una palabra aunque puede haber sinónimos)\n");
                 //Inicio, arriba, etc
-                gets (	  respuesta2);
+                
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+				gets (respuesta2);
 
                 puntuacion += PreguntasEscritas (NivelDificil.pregunta6, respuesta2, 3);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 22)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -802,10 +842,12 @@ int main() {
                 printf("	c. Errante de seda\n");
                 printf("	d. Araña violinista\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta7, respuesta1, 3);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 23)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -820,14 +862,17 @@ int main() {
                 printf("	c. 46500\n"); //Correcta
                 printf("	d. 45500\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelDificil.pregunta8, respuesta1, 3);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 24)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
+
 
 
                 //NIVEL MUY DIFÍCIL
@@ -844,10 +889,12 @@ int main() {
                 printf("	c. Un pato\n");
                 printf("	d. Un demonio\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta1, respuesta1, 4);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 25)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -862,10 +909,12 @@ int main() {
                 printf("	c. Las arañas Stigya\n");
                 printf("	d. Las arañas de Stigia\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta2, respuesta1, 4);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 26)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -880,10 +929,12 @@ int main() {
                 printf("	c. La caricia de la viuda\n"); // Correcta
                 printf("	d. EL beso de la viuda\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta3, respuesta1, 4);
-               	if(salida(Historicas, Jugador)==1){
+               	if(salida(Historicas, contador, Jugador, puntuacion, 27)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -898,10 +949,12 @@ int main() {
                 printf("	c. Davanova\n");
                 printf("	d. Petrova\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta4, respuesta1, 4);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 28)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -916,10 +969,12 @@ int main() {
                 printf("	c. Tarántula Goliat\n");
                 printf("	d. Bagheera Kiplingi\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta5, respuesta1, 4);
-            	if(salida(Historicas, Jugador)==1){
+            	if(salida(Historicas, contador, Jugador, puntuacion, 29)==1){
 					break;
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
@@ -934,10 +989,12 @@ int main() {
                 printf("	c. ¿Sabes dónde hay una araña?\n");
                 printf("	d. No le preguntan nada\n");
 
-                scanf ("	respuesta: %c", &respuesta1);
+                printf ("\n");
+				printf ("	RESPUESTA: ");
+                scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest(NivelMuyDificil.pregunta6, respuesta1, 4);
-                if(salida(Historicas, Jugador)==1){
+                if(salida(Historicas, contador, Jugador, puntuacion, 30)==1){
 					break;
 				}
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
