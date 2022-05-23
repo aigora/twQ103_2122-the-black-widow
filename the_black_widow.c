@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include <time.h>
 
 #define TAM_JUGADORES 2
 #define TAM_MAX 300
@@ -170,7 +169,7 @@ int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugado
         fclose (pfichero);
 
 		printf ("\n\n");
-		printf ("G A M E    O V E R");
+		printf ("	G A M E    O V E R");
 		printf ("\n\n");
 		return 1;
 	}
@@ -223,7 +222,7 @@ int Historia(){
     phistoria = fopen("Historia.txt", "r");
     char lineahistoria[80];
     if(phistoria == NULL){
-       printf("Error en la apertura del fichero\n");
+       printf("	Error en la apertura del fichero\n");
        return -1;
     }
 
@@ -280,24 +279,25 @@ int main() {
 
 	do {
 
-		printf("MENÚ DE OPCIONES\n");
-		printf("Escriba el número que representa la acción que desea realizar:\n");
-    	printf("1. Instrucciones del juego\n");
-    	printf("2. Iniciar  sesión\n");
-    	printf("3. Ranking de puntuaciones\n");
-   		printf("4. Iniciar juego\n");
-    	printf("5. Salir\n");
-
+		printf("	MENÚ DE OPCIONES\n");
+		printf("	Escriba el número que representa la acción que desea realizar:\n");
+    	printf("	1. Instrucciones del juego\n");
+    	printf("	2. Iniciar  sesión\n");
+    	printf("	3. Ranking de puntuaciones\n");
+   		printf("	4. Iniciar juego\n");
+    	printf("	5. Salir\n\n");
+		
+		printf("	OPCIÓN: ");
 		scanf("%d", &opcion);
-
+		
 		switch(opcion) {
 
             case 1:
             	system("cls");
                 printf ("\n");
-    			printf ("INSTRUCCIONES DE JUEGO\n");
-        		printf("1-Pulse iniciar sesión e introduzca su nombre.\n");
-        		printf("2-El propio programa le volverá a mostrar el menú, a continuación pulse iniciar juego y disfrute de este.\n");
+    			printf ("	INSTRUCCIONES DE JUEGO\n");
+        		printf("	1-Pulse iniciar sesión e introduzca su nombre.\n");
+        		printf("	2-El propio programa le volverá a mostrar el menú, a continuación pulse iniciar juego y disfrute de este.\n");
 				printf ("\n\n");
         	break;
 
@@ -308,7 +308,8 @@ int main() {
 				//Añado la información almacenada en el txt a un vector de estructuras
 				pfichero=fopen ("puntuaciones.txt", "r");
 
-				printf ("Intruduce tu nombre jugador: \n");
+				printf("	Intruduce tu nombre jugador: \n");
+				printf("	NOMBRE: ");
 				fflush(stdin);
 				gets(Jugador.nombre);
 				printf("\n");
@@ -326,7 +327,7 @@ int main() {
 					i++;
 				}
 				if (comparar == 0){
-					printf("%s tienes una puntuación inicial de %d y tu última pregunta fue la %d\n", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+					printf("	%s tienes una puntuación inicial de %d y tu última pregunta fue la %d\n", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
 				}
 
 				fclose (pfichero);
@@ -334,9 +335,9 @@ int main() {
 
 				printf ("\n");
 
-				printf ("Bienvenido al juego, jugador\n");
-				printf ("(Usa una voz de villano de Disney)\n");
-				printf ("En breves te adentraras en esta terrorífica experiencia a solas\n");
+				printf ("	Bienvenido al juego, jugador\n");
+				printf ("	(Usa una voz de villano de Disney)\n");
+				printf ("	En breves te adentraras en esta terrorífica experiencia a solas\n");
 				printf("\n");
 
             break;
@@ -365,16 +366,17 @@ int main() {
 
                 fflush(stdin);
                 printf("¿Estás seguro de querer adentrarte? Responde si (s) o no (n):\n");
+                printf("RESPUESTA: ");
                 scanf("%c", &pregunta);
                 if (pregunta == 'n') {
                     break;
                 }
                 //system("cls");
 
-                printf("La prueba empieza en: \n");
-                printf("3\n");
-                printf("2\n");
-                printf("1\n");
+                printf("	La prueba empieza en: \n");
+                printf("	3\n");
+                printf("	2\n");
+                printf("	1\n");
 
                 printf("\n\n");
 
@@ -560,7 +562,7 @@ int main() {
                 if(salida(Historicas, contador, Jugador, puntuacion, 9)==1){
 					break;
 				}
-                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+                printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
 
 
@@ -688,7 +690,7 @@ int main() {
                 if(salida(Historicas, contador, Jugador, puntuacion, 15)==1){
 					break;
 				}
-                printf ("Tu puntuación actual es de %d puntos\n", puntuacion);
+                printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
 
 
@@ -1011,5 +1013,3 @@ int main() {
 printf ("El juego ha terminado\n");
 return 0;
 }
-
-
