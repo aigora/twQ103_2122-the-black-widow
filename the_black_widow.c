@@ -258,6 +258,56 @@ int Historia(){
     return 0;
 }
 
+int Historia1(){
+    FILE *phistoria;
+    phistoria = fopen("Historia1.txt", "r");
+    char lineahistoria[80];
+    if(phistoria == NULL){
+       printf("	Error en la apertura del fichero\n");
+       return -1;
+    }
+
+    char c;
+
+    while(((c = fgetc(phistoria))) != EOF) {
+        printf("%c", c);
+    }
+    return 0;
+}
+
+int Historia2(){
+    FILE *phistoria;
+    phistoria = fopen("Historia2.txt", "r");
+    char lineahistoria[80];
+    if(phistoria == NULL){
+       printf("	Error en la apertura del fichero\n");
+       return -1;
+    }
+
+    char c;
+
+    while(((c = fgetc(phistoria))) != EOF) {
+        printf("%c", c);
+    }
+    return 0;
+}
+
+int Historia3(){
+    FILE *phistoria;
+    phistoria = fopen("Historia3.txt", "r");
+    char lineahistoria[80];
+    if(phistoria == NULL){
+       printf("	Error en la apertura del fichero\n");
+       return -1;
+    }
+
+    char c;
+
+    while(((c = fgetc(phistoria))) != EOF) {
+        printf("%c", c);
+    }
+    return 0;
+}
 
 
 
@@ -635,6 +685,8 @@ int main() {
 				//NIVEL MEDIO
 
                 system("cls");
+                Historia1();
+                printf("\n\n");
 				printf ("	NIVEL MEDIO\n");
 				printf ("\n\n");
 
@@ -774,6 +826,8 @@ int main() {
                 //NIVEL DIFÍCIL
 
                 system("cls");
+                Historia2();
+                printf("\n\n");
 				printf ("  NIVEL DIFÍCIL\n");
 				printf ("\n\n");
 
@@ -946,6 +1000,8 @@ int main() {
                 //NIVEL MUY DIFÍCIL
 
                 system("cls");
+                Historia3();
+                printf("\n\n");
 				printf ("  NIVEL MUY DIFÍCIL\n");
 				printf ("\n\n");
 
