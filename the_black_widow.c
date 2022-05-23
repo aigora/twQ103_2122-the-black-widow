@@ -67,13 +67,6 @@ struct THistorica{
 
 };
 
-struct THistorica1{
-	char nombre[50];
-	int puntuacion;
-	int ultima_pregunta;
-
-};
-
 
 //FUNCIONES
 	//Función para las respuestas de los jugadores
@@ -83,7 +76,7 @@ int PreguntasTest (char respuesta, char solucion, int nivel) {
 	switch (nivel) {
 		case 1:
 			bien = 5;
-			mal = 5;
+			mal = 1;
 		break;
 
 		case 2:
@@ -173,8 +166,39 @@ int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugado
 		printf ("\n\n");
 		return 1;
 	}
+	
 
     return 0;
+}
+
+int SalidaNivel(struct THistorica Historicas[], int dimension, struct TJugador Jugador, int puntuacion, int pregunta, int decision){
+	FILE * pfichero;
+	int i;
+	
+	Jugador.puntuacion=puntuacion;
+    Jugador.ultima_pregunta=pregunta;
+        
+    pfichero = fopen ("puntuaciones.txt", "w");
+        
+    for (i=0;i<dimension;i++){
+        fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+    }
+    fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+    fclose (pfichero);
+    
+	if (decision==1){
+		printf ("\n\n");
+		printf ("	C O B A R D E");
+		printf ("\n\n");
+	} 
+	else{
+		printf ("\n\n");
+		printf ("	E N H O R A B U E N A   N O   E R E S   C O B A R D E");
+		printf ("\n\n");
+	}
+        
+
+return 0;
 }
 
 	//Función para el banner
@@ -188,7 +212,7 @@ void Banner () {
 	printf ("           --    --              --     --\n");
 	printf ("          --      --            --       --\n");
 	printf ("           --      --  .    .  --       --\n");
-	printf ("            --       -- -- -- --  	    --\n");
+	printf ("            --       -- -- -- --       --\n");
 	printf ("             --     --         --     --\n");
 	printf ("              --   --           --   --\n");
 	printf ("               -- --             -- --\n");
@@ -366,6 +390,7 @@ int main() {
                 system("cls");
                 
                 if (strcmp (Jugador.nombre, "-")==0){
+                	printf ("\n\n");
                 	printf ("	No ha iniciado sesión, regresa al menu principal\n");
                 	printf ("\n\n");
                 	break;
@@ -374,13 +399,14 @@ int main() {
                 Historia();
 
                 fflush(stdin);
-                printf("¿Estás seguro de querer adentrarte? Responde si (s) o no (n):\n");
-                printf("RESPUESTA: ");
+                printf("	¿Estás seguro de querer adentrarte? Responde si (s) o no (n)\n");
+                printf("	RESPUESTA: ");
                 scanf("%c", &pregunta);
                 if (pregunta == 'n') {
                     break;
                 }
-                //system("cls");
+                
+				system("cls");
 
                 printf("	La prueba empieza en: \n");
                 printf("	3\n");
@@ -393,7 +419,6 @@ int main() {
 
                 // NIVEL FÁCIL
 
-				system("cls");
 				printf ("	NIVEL FÁCIL\n");
 				printf ("\n\n");
 
@@ -595,6 +620,17 @@ int main() {
 				printf ("\n\n");
 				
 				
+				//Opción para salir del código
+				fflush(stdin);
+                printf("	¿Desea seguir con la aventura? Responde si (s) o no (n)\n");
+                printf("	RESPUESTA: ");
+                scanf("%c", &pregunta);
+                if (pregunta == 'n') {
+                	SalidaNivel(Historicas, contador, Jugador, puntuacion, 10, 1);
+                    break;
+                }
+				
+				
 				
 				//NIVEL MEDIO
 
@@ -723,8 +759,19 @@ int main() {
 				printf ("\n\n");
 				
 				
-				
-				//NIVEL DIFÍCIL
+				//Opción para salir del código
+				fflush(stdin);
+                printf("	¿Desea seguir con la aventura? Responde si (s) o no (n)\n");
+                printf("	RESPUESTA: ");
+                scanf("%c", &pregunta);
+                if (pregunta == 'n') {
+                	SalidaNivel(Historicas, contador, Jugador, puntuacion, 16, 1);
+                    break;
+                }
+                
+                
+                
+                //NIVEL DIFÍCIL
 
                 system("cls");
 				printf ("  NIVEL DIFÍCIL\n");
@@ -883,9 +930,19 @@ int main() {
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-
-
-
+				
+				
+				//Opción para salir del código
+				fflush(stdin);
+                printf("	¿Desea seguir con la aventura? Responde si (s) o no (n)\n");
+                printf("	RESPUESTA: ");
+                scanf("%c", &pregunta);
+                if (pregunta == 'n') {
+                	SalidaNivel(Historicas, contador, Jugador, puntuacion, 24, 1);
+                    break;
+                }
+                
+                
                 //NIVEL MUY DIFÍCIL
 
                 system("cls");
@@ -938,7 +995,7 @@ int main() {
                 printf("	a. Mordida de la viuda\n");
                 printf("	b. Línea Viuda\n");
                 printf("	c. La caricia de la viuda\n"); // Correcta
-                printf("	d. EL beso de la viuda\n");
+                printf("	d. El beso de la viuda\n");
 
                 printf ("\n");
 				printf ("	RESPUESTA: ");
@@ -954,7 +1011,7 @@ int main() {
 
                 // Pregunta 28
                 fflush(stdin);
-                printf("  28. ¿Cóomo se apellida el líder de la organización soviética que reclutó a la después conocida como Viuda Negra?\n");
+                printf("  28. ¿Cómo se apellida el líder de la organización soviética que reclutó a la después conocida como Viuda Negra?\n");
                 printf("	a. Malakov\n");
                 printf("	b. Dreykov\n"); // Correcta
                 printf("	c. Davanova\n");
@@ -1010,6 +1067,10 @@ int main() {
 				}
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
+				
+				
+                SalidaNivel(Historicas, contador, Jugador, puntuacion, 30, 0);
+                    
 
 
             break;
