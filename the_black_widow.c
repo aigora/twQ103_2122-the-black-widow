@@ -259,8 +259,10 @@ int main() {
 	//Variables para bucles
 	int i, j;
 
-	//Estructura de jugadores e historica de jugadores
-	struct TJugador Jugador;
+	//Estructura de jugadores
+	struct TJugador Jugador = {"-", 0, 0};
+	
+	//Estructura historica
 	struct THistorica Historicas[TAM_MAX];
 
 	//Estructuras con las soluciones a los niveles
@@ -362,6 +364,13 @@ int main() {
 
             case 4:
                 system("cls");
+                
+                if (strcmp (Jugador.nombre, "-")==0){
+                	printf ("	No ha iniciado sesión, regresa al menu principal\n");
+                	printf ("\n\n");
+                	break;
+				}
+				
                 Historia();
 
                 fflush(stdin);
