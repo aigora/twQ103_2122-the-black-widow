@@ -8,7 +8,7 @@ Al final del juego aparecerá un ranking con los ganadores.
 Estrella Pola (EstrellaPola), María Mezquida (mmezquidaf), Beatriz Pérez (BeaLightwood)
 
 ## Objetivos del trabajo
-- El programa constará de un banco de preguntas, de manera que el propio código escogerá de manera aleatoria entre ellas.
-- Habrá la opción de juego individual o multijugador hasta tres personas.
-- Existirá un contador de puntos para visualizar la trayectoria del juego, y un ranking final para ver el ganador. 
+- El programa constará de un banco de preguntas organizadas por diferentes niveles de dificultad.
+- Habrá un único modo de juego que será el modo individual.
+- Existirá un contador de puntos para visualizar la trayectoria del juego, y un ranking final para ver los resultados de todas las veces jugadas. 
 
