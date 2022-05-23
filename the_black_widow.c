@@ -154,7 +154,7 @@ int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugado
         Jugador.ultima_pregunta=pregunta;
 
         pfichero = fopen ("puntuaciones.txt", "w");
-        
+
         for (i=0;i<dimension;i++){
             fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
         }
@@ -166,7 +166,7 @@ int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugado
 		printf ("\n\n");
 		return 1;
 	}
-	
+
 
     return 0;
 }
@@ -174,29 +174,29 @@ int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugado
 int SalidaNivel(struct THistorica Historicas[], int dimension, struct TJugador Jugador, int puntuacion, int pregunta, int decision){
 	FILE * pfichero;
 	int i;
-	
+
 	Jugador.puntuacion=puntuacion;
     Jugador.ultima_pregunta=pregunta;
-        
+
     pfichero = fopen ("puntuaciones.txt", "w");
-        
+
     for (i=0;i<dimension;i++){
         fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
     }
     fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
     fclose (pfichero);
-    
+
 	if (decision==1){
 		printf ("\n\n");
 		printf ("	C O B A R D E");
 		printf ("\n\n");
-	} 
+	}
 	else{
 		printf ("\n\n");
 		printf ("	E N H O R A B U E N A   N O   E R E S   C O B A R D E");
 		printf ("\n\n");
 	}
-        
+
 
 return 0;
 }
@@ -309,6 +309,23 @@ int Historia3(){
     return 0;
 }
 
+int Historia4(){
+    FILE *phistoria;
+    phistoria = fopen("Historia4.txt", "r");
+    char lineahistoria[80];
+    if(phistoria == NULL){
+       printf("	Error en la apertura del fichero\n");
+       return -1;
+    }
+
+    char c;
+
+    while(((c = fgetc(phistoria))) != EOF) {
+        printf("%c", c);
+    }
+    return 0;
+}
+
 
 
 int main() {
@@ -327,7 +344,7 @@ int main() {
 	int puntuacion=0;
 
 
-	//Nos permite poner tildes 
+	//Nos permite poner tildes
 	setlocale (LC_CTYPE,"spanish");
 
 	//Variables para bucles
@@ -335,7 +352,7 @@ int main() {
 
 	//Estructura de jugadores
 	struct TJugador Jugador = {"-", 0, 0};
-	
+
 	//Estructura historica
 	struct THistorica Historicas[TAM_MAX];
 
@@ -362,10 +379,10 @@ int main() {
     	printf("	3. Ranking de puntuaciones\n");
    		printf("	4. Iniciar juego\n");
     	printf("	5. Salir\n\n");
-		
+
 		printf("	OPCIÓN: ");
 		scanf("%d", &opcion);
-		
+
 		switch(opcion) {
 
             case 1:
@@ -438,14 +455,14 @@ int main() {
 
             case 4:
                 system("cls");
-                
+
                 if (strcmp (Jugador.nombre, "-")==0){
                 	printf ("\n\n");
                 	printf ("	No ha iniciado sesión, regresa al menu principal\n");
                 	printf ("\n\n");
                 	break;
 				}
-				
+
                 Historia();
 
                 fflush(stdin);
@@ -455,7 +472,7 @@ int main() {
                 if (pregunta == 'n') {
                     break;
                 }
-                
+
 				system("cls");
 
                 printf("	La prueba empieza en: \n");
@@ -479,7 +496,7 @@ int main() {
                 printf("	b. Costurera\n");
                 printf("	c. Sastre\n");
                 printf("	d. Diseñadora\n");
-                
+
                 printf ("\n");
 				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
@@ -499,26 +516,26 @@ int main() {
                 printf("	b. Scarlett Johansson\n"); // Correcta
                 printf("	c. Elizabeth Olsen\n");
                 printf("	d. Natalie Portman\n");
-                
+
                 printf ("\n");
 				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
 
                 puntuacion += PreguntasTest (NivelFacil.pregunta2, respuesta1, 1);
-               
+
 				if(salida(Historicas, contador, Jugador, puntuacion, 2)==1){
 					break;
 				}
         		printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-				
-				
+
+
 				// Pregunta 3
                 printf ("\n");
                 fflush(stdin);
                 printf("  3. ¿Cómo se llama el miedo a las arañas? (Introduca una única palabra en minúsculas y sin acentos)\n");
                 // Aracnofobia
-                
+
                 printf ("\n");
 				printf ("	RESPUESTA: ");
                 gets (respuesta2);
@@ -599,7 +616,7 @@ int main() {
                 printf("	b. 2\n");
                 printf("	c. 4\n");
                 printf("	d. 8\n"); // Correcta
-				
+
 				printf ("\n");
 				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
@@ -637,7 +654,7 @@ int main() {
                 fflush(stdin);
                 printf("  9. ¿En qué película de Harry Potter aparecen arañas? (Solo dos palabras)\n");
                 // Cámara Secreta
-                
+
                 printf ("\n");
 				printf ("	RESPUESTA: ");
                 gets (	  respuesta2);
@@ -668,8 +685,8 @@ int main() {
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-				
-				
+
+
 				//Opción para salir del código
 				fflush(stdin);
                 printf("	¿Desea seguir con la aventura? Responde si (s) o no (n)\n");
@@ -679,9 +696,9 @@ int main() {
                 	SalidaNivel(Historicas, contador, Jugador, puntuacion, 10, 1);
                     break;
                 }
-				
-				
-				
+
+
+
 				//NIVEL MEDIO
 
                 system("cls");
@@ -809,8 +826,8 @@ int main() {
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-				
-				
+
+
 				//Opción para salir del código
 				fflush(stdin);
                 printf("	¿Desea seguir con la aventura? Responde si (s) o no (n)\n");
@@ -820,9 +837,9 @@ int main() {
                 	SalidaNivel(Historicas, contador, Jugador, puntuacion, 16, 1);
                     break;
                 }
-                
-                
-                
+
+
+
                 //NIVEL DIFÍCIL
 
                 system("cls");
@@ -896,7 +913,7 @@ int main() {
                 fflush(stdin);
                 printf("  20. ¿Cómo se dice araña en latín? (Solo una palabra)\n");
                 //aranea
-                
+
                 printf ("\n");
 				printf ("	RESPUESTA: ");
 				gets (respuesta2);
@@ -933,7 +950,7 @@ int main() {
                 fflush(stdin);
                 printf("  22. Dentro de este programa hemos escondido una araña, ¿dónde está? (Solo una palabra aunque puede haber sinónimos)\n");
                 //Inicio, arriba, etc
-                
+
                 printf ("\n");
 				printf ("	RESPUESTA: ");
 				gets (respuesta2);
@@ -984,8 +1001,8 @@ int main() {
 				}
                 printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-				
-				
+
+
 				//Opción para salir del código
 				fflush(stdin);
                 printf("	¿Desea seguir con la aventura? Responde si (s) o no (n)\n");
@@ -995,8 +1012,8 @@ int main() {
                 	SalidaNivel(Historicas, contador, Jugador, puntuacion, 24, 1);
                     break;
                 }
-                
-                
+
+
                 //NIVEL MUY DIFÍCIL
 
                 system("cls");
@@ -1123,10 +1140,13 @@ int main() {
 				}
 				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 				printf ("\n\n");
-				
-				
+
+				Historia4();
+                printf("\n\n");
+
+
                 SalidaNivel(Historicas, contador, Jugador, puntuacion, 30, 0);
-                    
+
 
 
             break;
