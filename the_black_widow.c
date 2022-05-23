@@ -36,7 +36,6 @@ struct TNivelDificil { //Nivel 3
 	char pregunta3;
 	char pregunta4 [30];
 	char pregunta5;
-	char pregunta6 [30];
 	char pregunta7;
 	char pregunta8;
 };
@@ -133,11 +132,11 @@ int PreguntasEscritas (char respuesta[], char solucion[], int nivel){
 	comparar = strcmp (respuesta, solucion);
 	if (comparar==0){
 		printf ("	Has ganado %d puntos\n", bien);
-		puntuacion += 5;
+		puntuacion += bien;
 	}
 	else {
 		printf ("	Respuesta incorrecta\n");
-		puntuacion -= 1;
+		puntuacion -= mal;
 	}
 
 return puntuacion;
@@ -156,9 +155,9 @@ int salida(struct THistorica Historicas[], int dimension, struct TJugador Jugado
         pfichero = fopen ("puntuaciones.txt", "w");
         
         for (i=0;i<dimension;i++){
-            fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+            fprintf (pfichero, "%s %d %d\n", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
         }
-        fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+        fprintf (pfichero, "%s %d %d\n", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
         fclose (pfichero);
 
 		printf ("\n\n");
@@ -178,12 +177,11 @@ int SalidaNivel(struct THistorica Historicas[], int dimension, struct TJugador J
 	Jugador.puntuacion=puntuacion;
     Jugador.ultima_pregunta=pregunta;
         
-    pfichero = fopen ("puntuaciones.txt", "w");
-        
+    pfichero = fopen ("puntuaciones.txt", "w");    
     for (i=0;i<dimension;i++){
         fprintf (pfichero, "%s %d %d", Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
     }
-    fprintf (pfichero, "%s %d %d", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+    fprintf (pfichero, "%s %d %d\n", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
     fclose (pfichero);
     
 	if (decision==1){
@@ -320,6 +318,9 @@ int main() {
 
 	//Variable encargada de contar el numero de filas en el archivo donde se almacenan los datos históricos
 	int contador=0;
+	
+	//Variable auxiliar
+	int aux=0;
 
 	//Variable para almacenar las respuestas de cada persona
 	char respuesta1, respuesta2[50];
@@ -342,7 +343,7 @@ int main() {
 	//Estructuras con las soluciones a los niveles
 	struct TNivelFacil NivelFacil = {'a', 'b', "aracnofobia", 'a', 'a', 'd', 'd', 'a', "camara secreta",'b'};
 	struct TNivelMedio NivelMedio = {'a', 'd', 'c', 'c', 'c', 'c'};
-	struct TNivelDificil NivelDificil = {'b', 'b', 'b', "aranea",'b', "inicio, arriba", 'b', 'c'};
+	struct TNivelDificil NivelDificil = {'b', 'b', 'b', "aranea",'b', 'b', 'c'};
 	struct TNivelMuyDificil NivelMuyDificil = {'a', 'a', 'c', 'b', 'b', 'b'};
 
 	//Varible para comparar cadenas
@@ -392,19 +393,19 @@ int main() {
 
 				i=0;
 				while (fscanf (pfichero, "%s %d %d", Historicas[i].nombre, &Historicas[i].puntuacion, &Historicas[i].ultima_pregunta) != EOF){
-					comparar = strcmp (Jugador.nombre, Historicas[i].nombre);
-
-					if (comparar==0) {
-						Jugador.puntuacion=Historicas[i].puntuacion;
-						Jugador.ultima_pregunta=Historicas[i].ultima_pregunta;
-						puntuacion = Jugador.puntuacion;
-					}
 					contador++;
 					i++;
 				}
-				if (comparar == 0){
-					printf("	%s tienes una puntuación inicial de %d y tu última pregunta fue la %d\n", Jugador.nombre, Jugador.puntuacion, Jugador.ultima_pregunta);
+				
+				aux=0;
+				for (i=0; i<contador; i++) {
+					if (strcmp (Jugador.nombre, Historicas[i].nombre) == 0){
+						aux++;
+						printf("	%d. %s tuviste una puntuación de %d y tu última pregunta fue la %d\n", aux, Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
+					}
 				}
+				printf ("\n");
+				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 
 				fclose (pfichero);
 
@@ -415,12 +416,13 @@ int main() {
 				printf ("	(Usa una voz de villano de Disney)\n");
 				printf ("	En breves te adentraras en esta terrorífica experiencia a solas\n");
 				printf("\n");
+				
 
             break;
 
-
-            case 3:
+			case 3:
             	system("cls");
+            	printf("\n\n");
                 pfichero = fopen ("puntuaciones.txt", "r");
                 if (pfichero == NULL) {
                     printf ("Error en la apertura del fichero\n");
@@ -435,7 +437,7 @@ int main() {
                 fclose (pfichero);
 
             break;
-
+            
             case 4:
                 system("cls");
                 
@@ -937,8 +939,14 @@ int main() {
                 printf ("\n");
 				printf ("	RESPUESTA: ");
 				gets (respuesta2);
-
-                puntuacion += PreguntasEscritas (NivelDificil.pregunta6, respuesta2, 3);
+				
+				if (strcmp(respuesta2, "inicio") == 0 || strcmp(respuesta2, "principio") == 0 || strcmp(respuesta2, "arriba") == 0){
+					puntuacion += 10;
+				}
+                else{
+                	puntuacion-=5;
+				}
+				Jugador.puntuacion=puntuacion;
             	if(salida(Historicas, contador, Jugador, puntuacion, 22)==1){
 					break;
 				}
@@ -1126,10 +1134,9 @@ int main() {
 				
 				
                 SalidaNivel(Historicas, contador, Jugador, puntuacion, 30, 0);
-                    
-
-
             break;
+
+            
 		}
 	}
 
