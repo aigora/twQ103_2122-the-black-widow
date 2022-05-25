@@ -422,15 +422,13 @@ int main() {
 						printf("	%d. %s tuviste una puntuación de %d y tu última pregunta fue la %d\n", aux, Historicas[i].nombre, Historicas[i].puntuacion, Historicas[i].ultima_pregunta);
 					}
 				}
-				printf ("\n");
-				printf ("	Tu puntuación actual es de %d puntos\n", puntuacion);
 
 				fclose (pfichero);
-
+				printf ("	%s recuerda que una vez inicie el juego tu puntuación volverá a cero, sin importar los datos anteriores\n", Jugador.nombre);
 
 				printf ("\n");
 
-				printf ("	Bienvenido al juego, jugador\n");
+				printf ("	Bienvenido al juego, jugador\n\n");
 				printf ("	(Usa una voz de villano de Disney)\n");
 				printf ("	En breves te adentraras en esta terrorífica experiencia a solas\n");
 				printf("\n");
@@ -461,11 +459,12 @@ int main() {
 
                 if (strcmp (Jugador.nombre, "-")==0){
                 	printf ("\n\n");
-                	printf ("	No ha iniciado sesión, regresa al menu principal\n");
+                	printf ("	No ha iniciado sesión, regrese al menú principal\n");
                 	printf ("\n\n");
                 	break;
 				}
 
+				printf ("\n");
                 Historia();
 
                 fflush(stdin);
@@ -503,7 +502,8 @@ int main() {
                 printf ("\n");
 				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
-
+				
+				puntuacion=0;
 				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1, 1);
 				if(salida(Historicas, contador, Jugador, puntuacion, 1)==1){
                     break;
@@ -705,7 +705,10 @@ int main() {
 				//NIVEL MEDIO
 
                 system("cls");
+                
+                printf ("\n");
                 Historia1();
+                
                 printf("\n\n");
 				printf ("	NIVEL MEDIO\n");
 				printf ("\n\n");
@@ -846,7 +849,10 @@ int main() {
                 //NIVEL DIFÍCIL
 
                 system("cls");
+                
+				printf ("\n");
                 Historia2();
+                
                 printf("\n\n");
 				printf ("  NIVEL DIFÍCIL\n");
 				printf ("\n\n");
@@ -952,7 +958,7 @@ int main() {
                 // Pregunta 22
                 fflush(stdin);
                 printf("  22. Dentro de este programa hemos escondido una araña, ¿dónde está? (Solo una palabra aunque puede haber sinónimos)\n");
-                //Inicio, arriba, etc
+                //Inicio, arriba o principio
 
                 printf ("\n");
 				printf ("	RESPUESTA: ");
@@ -960,9 +966,11 @@ int main() {
 
 				if (strcmp(respuesta2, "inicio") == 0 || strcmp(respuesta2, "principio") == 0 || strcmp(respuesta2, "arriba") == 0){
 					puntuacion += 10;
+					printf ("	Has ganado 10 puntos\n");
 				}
                 else{
                 	puntuacion-=5;
+                	printf ("	Respuesta incorrecta\n");
 				}
 				Jugador.puntuacion=puntuacion;
             	if(salida(Historicas, contador, Jugador, puntuacion, 22)==1){
@@ -1026,7 +1034,10 @@ int main() {
                 //NIVEL MUY DIFÍCIL
 
                 system("cls");
+                
+                printf ("\n");
                 Historia3();
+                
                 printf("\n\n");
 				printf ("  NIVEL MUY DIFÍCIL\n");
 				printf ("\n\n");
@@ -1164,6 +1175,6 @@ int main() {
 	while (opcion!=5);
 	system("cls");
 
-printf ("El juego ha terminado\n");
+printf ("F I N    D E L    J U E G O\n");
 return 0;
 }
