@@ -393,6 +393,7 @@ int main() {
     			printf ("	INSTRUCCIONES DE JUEGO\n");
         		printf("	1-Pulse iniciar sesión e introduzca su nombre.\n");
         		printf("	2-El propio programa le volverá a mostrar el menú, a continuación pulse iniciar juego y disfrute de este.\n");
+        		printf ("	Aclaración: las preguntas del juego deben ser respondidas usando letras minúsculas\n");
 				printf ("\n\n");
         	break;
 
