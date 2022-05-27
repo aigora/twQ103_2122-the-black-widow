@@ -503,7 +503,7 @@ int main() {
                 printf ("\n");
 				printf ("	RESPUESTA: ");
                 scanf ("%c", &respuesta1);
-				
+
 				puntuacion=0;
 				puntuacion += PreguntasTest (NivelFacil.pregunta1, respuesta1, 1);
 				if(salida(Historicas, contador, Jugador, puntuacion, 1)==1){
@@ -706,10 +706,10 @@ int main() {
 				//NIVEL MEDIO
 
                 system("cls");
-                
+
                 printf ("\n");
                 Historia1();
-                
+
                 printf("\n\n");
 				printf ("	NIVEL MEDIO\n");
 				printf ("\n\n");
@@ -850,10 +850,10 @@ int main() {
                 //NIVEL DIFÍCIL
 
                 system("cls");
-                
+
 				printf ("\n");
                 Historia2();
-                
+
                 printf("\n\n");
 				printf ("  NIVEL DIFÍCIL\n");
 				printf ("\n\n");
@@ -1035,10 +1035,10 @@ int main() {
                 //NIVEL MUY DIFÍCIL
 
                 system("cls");
-                
+
                 printf ("\n");
                 Historia3();
-                
+
                 printf("\n\n");
 				printf ("  NIVEL MUY DIFÍCIL\n");
 				printf ("\n\n");
@@ -1127,7 +1127,7 @@ int main() {
                 fflush(stdin);
                 printf("  29. ¿Qué tipo de araña es Aragog?\n");
                 printf("	a. Tarántula\n");
-                printf("	b. Acromátula\n");  // Correcta
+                printf("	b. Acromántula\n");  // Correcta
                 printf("	c. Tarántula Goliat\n");
                 printf("	d. Bagheera Kiplingi\n");
 
@@ -1147,7 +1147,7 @@ int main() {
                 fflush(stdin);
                 printf("  30. ¿Qué le preguntan a Luke Garroway que colecciona después  de que Clary Fairchild le pusiera la runa sin miedo a Alec Lightwood?\n");
                 printf("	a. ¿Coleccionas arañas?\n");
-                printf("	b. ¿Tienes una araña?\n");
+                printf("	b. ¿Tienes una araña?\n"); //Correcta
                 printf("	c. ¿Sabes dónde hay una araña?\n");
                 printf("	d. No le preguntan nada\n");
 
