@@ -373,7 +373,7 @@ int main() {
 
 
 	do {
-
+		printf ("\n");
 		printf("	MENÚ DE OPCIONES\n");
 		printf("	Escriba el número que representa la acción que desea realizar:\n");
     	printf("	1. Instrucciones del juego\n");
